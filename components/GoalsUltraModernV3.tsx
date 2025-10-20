@@ -145,8 +145,8 @@ const GoalsUltraModernV3: React.FC = () => {
   };
 
   const handleDeleteObjective = async (id: string) => {
-    setIsSubmitting(true);
-    setSubmitError(null);
+    setSubmitting(true);
+    setError(null);
     
     try {
       console.log('🔄 Suppression objectif...');
@@ -154,14 +154,13 @@ const GoalsUltraModernV3: React.FC = () => {
       await loadData(); // Recharger les données
       setShowDeleteModal(false);
       setSelectedObjective(null);
-      setSubmitSuccess(true);
-      setTimeout(() => setSubmitSuccess(false), 3000);
+      setSuccess('Objectif supprimé avec succès');
       console.log('✅ Objectif supprimé avec succès');
     } catch (error) {
       console.error('❌ Erreur suppression objectif:', error);
-      setSubmitError('Erreur lors de la suppression de l\'objectif');
+      setError('Erreur lors de la suppression de l\'objectif');
     } finally {
-      setIsSubmitting(false);
+      setSubmitting(false);
     }
   };
 

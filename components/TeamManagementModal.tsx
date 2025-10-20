@@ -31,12 +31,14 @@ const TeamManagementModal: React.FC<TeamManagementModalProps> = ({
   if (!project) return null;
 
   // Filtrer les utilisateurs disponibles (pas déjà dans l'équipe)
-  const teamMemberIds = (project.team_members || []).map(memberId => memberId);
+  const teamMemberIds = (project.team_members || []).map(memberId => 
+    typeof memberId === 'string' ? memberId : memberId.id || memberId
+  );
   const availableUsersFiltered = (availableUsers || []).filter(user => 
     !teamMemberIds.includes(user.id) &&
     (searchTerm === '' || 
-     (user.first_name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-     (user.last_name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+     (user.first_name || user.firstName || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+     (user.last_name || user.lastName || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
      (user.email || '').toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
@@ -45,18 +47,31 @@ const TeamManagementModal: React.FC<TeamManagementModalProps> = ({
     ? availableUsersFiltered.filter(user => user.role === selectedRole)
     : availableUsersFiltered;
 
+  // Debug des utilisateurs
+  useEffect(() => {
+    console.log('👥 Utilisateurs disponibles:', availableUsers.length);
+    console.log('🔍 Utilisateurs filtrés:', filteredUsers.length);
+    console.log('📋 Membres équipe:', teamMemberIds);
+  }, [availableUsers, filteredUsers, teamMemberIds]);
+
   const handleAddMember = async (user: User) => {
     try {
       setLoading(true);
       setError(null);
       
+      console.log('🔄 Ajout membre à l\'équipe:', user.email);
+      console.log('📊 Projet:', project.name);
+      console.log('👥 Équipe actuelle:', project.team_members);
+      
       const updatedProject = await projectService.addTeamMember(project.id, user);
       if (updatedProject) {
         onUpdate(updatedProject);
         console.log('✅ Membre ajouté à l\'équipe');
+      } else {
+        setError('Erreur lors de l\'ajout du membre');
       }
     } catch (error: any) {
-      setError(error.message);
+      setError(error.message || 'Erreur lors de l\'ajout du membre');
       console.error('❌ Erreur ajout membre:', error);
     } finally {
       setLoading(false);
