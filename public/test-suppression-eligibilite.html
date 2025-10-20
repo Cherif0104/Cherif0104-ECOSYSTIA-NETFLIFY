@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Suppression Règles Éligibilité</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px; }
+        .success { background-color: #f0f9ff; border-color: #0ea5e9; }
+        .error { background-color: #fef2f2; border-color: #ef4444; }
+        .warning { background-color: #fffbeb; border-color: #f59e0b; }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">🔧 Test Suppression Règles Éligibilité</h1>
+        
+        <div class="test-section success">
+            <h2 class="text-xl font-semibold text-blue-800 mb-4">✅ Règles d'Éligibilité Supprimées</h2>
+            <ul class="list-disc list-inside space-y-2 text-blue-700">
+                <li><strong>Vérification automatique supprimée :</strong> Plus de vérification des projets en cours</li>
+                <li><strong>Vérification des objectifs supprimée :</strong> Plus de vérification des objectifs <80%</li>
+                <li><strong>Section d'éligibilité supprimée :</strong> Plus d'affichage des statuts d'éligibilité</li>
+                <li><strong>Manager optionnel :</strong> Plus de sélection obligatoire du manager</li>
+                <li><strong>Demande manuelle supprimée :</strong> Plus de mode demande manuelle</li>
+                <li><strong>Validation simplifiée :</strong> Seulement les champs essentiels</li>
+            </ul>
+        </div>
+
+        <div class="test-section warning">
+            <h2 class="text-xl font-semibold text-orange-800 mb-4">🧪 Test à Effectuer</h2>
+            <ol class="list-decimal list-inside space-y-2 text-orange-700">
+                <li>Actualiser la page Leave Management</li>
+                <li>Cliquer sur "Créer une demande"</li>
+                <li>Vérifier que le formulaire est simplifié</li>
+                <li>Remplir seulement les champs essentiels :
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li>Employé</li>
+                        <li>Type de congé</li>
+                        <li>Date de début</li>
+                        <li>Date de fin</li>
+                        <li>Motif (optionnel)</li>
+                    </ul>
+                </li>
+                <li>Cliquer sur "Créer la demande"</li>
+                <li>Vérifier que la demande est créée sans erreur</li>
+            </ol>
+        </div>
+
+        <div class="test-section success">
+            <h2 class="text-xl font-semibold text-green-800 mb-4">🎯 Résultat Attendu</h2>
+            <ul class="list-disc list-inside space-y-2 text-green-700">
+                <li>✅ Formulaire simplifié sans sections d'éligibilité</li>
+                <li>✅ Pas de vérification automatique des projets/objectifs</li>
+                <li>✅ Manager optionnel (pas obligatoire)</li>
+                <li>✅ Création de demande sans restrictions</li>
+                <li>✅ Pas d'erreur dans la console</li>
+                <li>✅ Demande créée avec succès</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">📋 Champs du Formulaire Simplifié</h2>
+            <div class="bg-gray-100 p-4 rounded-lg">
+                <h3 class="font-semibold mb-2">Champs obligatoires :</h3>
+                <ul class="text-sm space-y-1">
+                    <li><strong>Employé :</strong> Sélection dans la liste</li>
+                    <li><strong>Type de congé :</strong> Annual, Sick, Personal, etc.</li>
+                    <li><strong>Date de début :</strong> Sélection de date</li>
+                    <li><strong>Date de fin :</strong> Sélection de date</li>
+                </ul>
+                <h3 class="font-semibold mb-2 mt-4">Champs optionnels :</h3>
+                <ul class="text-sm space-y-1">
+                    <li><strong>Manager :</strong> Sélection optionnelle</li>
+                    <li><strong>Motif :</strong> Description libre</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="test-section success">
+            <h2 class="text-xl font-semibold text-green-800 mb-4">✅ Avantages de la Simplification</h2>
+            <ul class="list-disc list-inside space-y-2 text-green-700">
+                <li><strong>Plus simple :</strong> Formulaire plus facile à utiliser</li>
+                <li><strong>Plus rapide :</strong> Pas de vérifications complexes</li>
+                <li><strong>Plus flexible :</strong> Pas de restrictions automatiques</li>
+                <li><strong>Moins d'erreurs :</strong> Moins de points de défaillance</li>
+                <li><strong>Plus accessible :</strong> Tous les employés peuvent faire des demandes</li>
+            </ul>
+        </div>
+
+        <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">📝 Notes</h3>
+            <p class="text-blue-700 text-sm">
+                Les règles d'éligibilité ont été complètement supprimées pour simplifier le processus. 
+                Maintenant, tous les employés peuvent créer des demandes de congé sans restrictions automatiques.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

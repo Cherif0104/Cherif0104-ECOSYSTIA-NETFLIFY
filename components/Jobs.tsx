@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Avatar from './common/Avatar';
 import { useLocalization } from '../contexts/LocalizationContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { Job, User } from '../types';
 
 const CircularProgress: React.FC<{ score: number }> = ({ score }) => {
@@ -85,7 +86,7 @@ const ApplicantsModal: React.FC<{ job: Job; onClose: () => void }> = ({ job, onC
                                 </div>
                             </div>
                         )}
-                        <img src={applicant.avatar} alt={applicant.name} className="w-16 h-16 rounded-full"/>
+                        <Avatar user={applicant} size="md" className="w-16 h-16 rounded-full"/>
                         <div className="flex-grow">
                             <p className="font-bold text-lg text-gray-800">{applicant.name}</p>
                             <p className="text-sm text-gray-500">{applicant.email}</p>

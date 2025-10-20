@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Leave Management V3 - Fonctionnalités Complètes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@heroicons/react@2.0.18/outline/index.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+        const { 
+            CalendarDaysIcon, UserGroupIcon, ClockIcon, ChartBarIcon, PlusIcon, 
+            PencilIcon, TrashIcon, EyeIcon, CheckCircleIcon, ExclamationTriangleIcon, 
+            StarIcon, CalendarIcon, MagnifyingGlassIcon, FunnelIcon, ArrowUpIcon, 
+            ArrowDownIcon, ArrowPathIcon, ArrowDownTrayIcon, ArrowUpTrayIcon, 
+            Squares2X2Icon, ListBulletIcon, TableCellsIcon, XMarkIcon, 
+            ExclamationCircleIcon, CheckIcon, UserIcon, DocumentTextIcon,
+            ShieldCheckIcon, InformationCircleIcon
+        } = Heroicons;
+
+        // Types et interfaces
+        const LeaveRequest = {
+            id: '',
+            employeeId: '',
+            leaveType: 'annual',
+            startDate: '',
+            endDate: '',
+            reason: '',
+            status: 'pending',
+            projectId: '',
+            daysRequested: 1,
+            approvedBy: '',
+            approvedAt: '',
+            createdAt: '',
+            updatedAt: '',
+            isEligible: true,
+            eligibilityReason: '',
+            managerId: '',
+            isManualRequest: false,
+            createdBy: ''
+        };
+
+        // Données de test
+        const mockUsers = [
+            { id: '1', firstName: 'Jean', lastName: 'Dupont', role: 'manager', email: 'jean@test.com' },
+            { id: '2', firstName: 'Marie', lastName: 'Martin', role: 'employee', email: 'marie@test.com' },
+            { id: '3', firstName: 'Pierre', lastName: 'Durand', role: 'administrator', email: 'pierre@test.com' },
+            { id: '4', firstName: 'Sophie', lastName: 'Leroy', role: 'employee', email: 'sophie@test.com' }
+        ];
+
+        const mockProjects = [
+            { id: '1', title: 'Projet Alpha', status: 'In Progress', team: ['2', '4'] },
+            { id: '2', title: 'Projet Beta', status: 'Completed', team: ['2'] },
+            { id: '3', title: 'Projet Gamma', status: 'Not Started', team: ['4'] }
+        ];
+
+        const mockLeaveRequests = [
+            {
+                id: '1',
+                employeeId: '2',
+                leaveType: 'annual',
+                startDate: '2024-02-01',
+                endDate: '2024-02-05',
+                reason: 'Vacances familiales',
+                status: 'pending',
+                projectId: '1',
+                daysRequested: 5,
+                managerId: '1',
+                isEligible: false,
+                eligibilityReason: 'Projets en cours: 1',
+                isManualRequest: false,
+                createdBy: '2',
+                createdAt: '2024-01-15T10:00:00Z'
+            },
+            {
+                id: '2',
+                employeeId: '4',
+                leaveType: 'sick',
+                startDate: '2024-01-20',
+                endDate: '2024-01-22',
+                reason: 'Maladie',
+                status: 'approved',
+                projectId: '',
+                daysRequested: 3,
+                managerId: '1',
+                isEligible: true,
+                isManualRequest: false,
+                createdBy: '4',
+                approvedBy: '1',
+                approvedAt: '2024-01-19T14:30:00Z',
+                createdAt: '2024-01-19T09:00:00Z'
+            },
+            {
+                id: '3',
+                employeeId: '2',
+                leaveType: 'personal',
+                startDate: '2024-02-10',
+                endDate: '2024-02-12',
+                reason: 'Rendez-vous médical',
+                status: 'pending',
+                projectId: '',
+                daysRequested: 3,
+                managerId: '3',
+                isEligible: true,
+                isManualRequest: true,
+                createdBy: '3',
+                createdAt: '2024-01-20T16:00:00Z'
+            }
+        ];
+
+        // Composant principal
+        function LeaveManagementV3Test() {
+            const [leaveRequests, setLeaveRequests] = useState(mockLeaveRequests);
+            const [users, setUsers] = useState(mockUsers);
+            const [projects, setProjects] = useState(mockProjects);
+            const [loading, setLoading] = useState(false);
+            const [error, setError] = useState(null);
+            const [showModal, setShowModal] = useState(false);
+            const [editingRequest, setEditingRequest] = useState(null);
+            const [viewMode, setViewMode] = useState('grid');
+            const [filters, setFilters] = useState({
+                search: '',
+                status: '',
+                leaveType: '',
+                projectId: '',
+                employeeId: ''
+            });
+
+            // Métriques
+            const metrics = useMemo(() => {
+                const totalRequests = leaveRequests.length;
+                const pendingRequests = leaveRequests.filter(req => req.status === 'pending').length;
+                const approvedRequests = leaveRequests.filter(req => req.status === 'approved').length;
+                const rejectedRequests = leaveRequests.filter(req => req.status === 'rejected').length;
+                const totalDays = leaveRequests.reduce((sum, req) => sum + req.daysRequested, 0);
+                const averageDuration = totalRequests > 0 ? totalDays / totalRequests : 0;
+                const teamMembers = users.length;
+                const approvalRate = totalRequests > 0 ? (approvedRequests / totalRequests) * 100 : 0;
+
+                return {
+                    totalRequests,
+                    pendingRequests,
+                    approvedRequests,
+                    rejectedRequests,
+                    totalDays,
+                    averageDuration,
+                    teamMembers,
+                    approvalRate
+                };
+            }, [leaveRequests, users]);
+
+            // Filtrage
+            const filteredRequests = useMemo(() => {
+                return leaveRequests.filter(request => {
+                    const matchesSearch = !filters.search || 
+                        getEmployeeName(request.employeeId).toLowerCase().includes(filters.search.toLowerCase()) ||
+                        request.leaveType.toLowerCase().includes(filters.search.toLowerCase()) ||
+                        request.reason?.toLowerCase().includes(filters.search.toLowerCase());
+                    
+                    const matchesStatus = !filters.status || request.status === filters.status;
+                    const matchesLeaveType = !filters.leaveType || request.leaveType === filters.leaveType;
+                    const matchesProject = !filters.projectId || request.projectId === filters.projectId;
+                    const matchesEmployee = !filters.employeeId || request.employeeId === filters.employeeId;
+                    
+                    return matchesSearch && matchesStatus && matchesLeaveType && matchesProject && matchesEmployee;
+                });
+            }, [leaveRequests, filters, users]);
+
+            // Fonctions utilitaires
+            const getEmployeeName = (employeeId) => {
+                const employee = users.find(u => u.id === employeeId);
+                return employee ? `${employee.firstName} ${employee.lastName}` : 'Utilisateur inconnu';
+            };
+
+            const getProjectName = (projectId) => {
+                const project = projects.find(p => p.id === projectId);
+                return project ? project.title : 'Projet non trouvé';
+            };
+
+            const formatDate = (date) => {
+                return new Date(date).toLocaleDateString('fr-FR');
+            };
+
+            const getStatusColor = (status) => {
+                switch (status) {
+                    case 'approved': return 'bg-green-100 text-green-800';
+                    case 'pending': return 'bg-yellow-100 text-yellow-800';
+                    case 'rejected': return 'bg-red-100 text-red-800';
+                    case 'cancelled': return 'bg-gray-100 text-gray-800';
+                    default: return 'bg-gray-100 text-gray-800';
+                }
+            };
+
+            const getStatusIcon = (status) => {
+                switch (status) {
+                    case 'approved': return React.createElement(CheckCircleIcon, { className: "w-4 h-4" });
+                    case 'pending': return React.createElement(ClockIcon, { className: "w-4 h-4" });
+                    case 'rejected': return React.createElement(XMarkIcon, { className: "w-4 h-4" });
+                    case 'cancelled': return React.createElement(ExclamationTriangleIcon, { className: "w-4 h-4" });
+                    default: return React.createElement(ClockIcon, { className: "w-4 h-4" });
+                }
+            };
+
+            const getLeaveTypeColor = (leaveType) => {
+                switch (leaveType) {
+                    case 'annual': return 'bg-blue-100 text-blue-800';
+                    case 'sick': return 'bg-red-100 text-red-800';
+                    case 'personal': return 'bg-purple-100 text-purple-800';
+                    case 'maternity': return 'bg-pink-100 text-pink-800';
+                    case 'paternity': return 'bg-indigo-100 text-indigo-800';
+                    case 'other': return 'bg-gray-100 text-gray-800';
+                    default: return 'bg-gray-100 text-gray-800';
+                }
+            };
+
+            const getLeaveTypeLabel = (leaveType) => {
+                switch (leaveType) {
+                    case 'annual': return 'Congés annuels';
+                    case 'sick': return 'Congés maladie';
+                    case 'personal': return 'Congés personnels';
+                    case 'maternity': return 'Congé maternité';
+                    case 'paternity': return 'Congé paternité';
+                    case 'other': return 'Autre';
+                    default: return leaveType;
+                }
+            };
+
+            const handleValidateRequest = (requestId, action) => {
+                setLeaveRequests(prev => prev.map(req => 
+                    req.id === requestId 
+                        ? { 
+                            ...req, 
+                            status: action === 'approve' ? 'approved' : 'rejected',
+                            approvedBy: '1',
+                            approvedAt: new Date().toISOString()
+                          }
+                        : req
+                ));
+                console.log(`Demande ${action === 'approve' ? 'validée' : 'rejetée'}:`, requestId);
+            };
+
+            const handleDeleteRequest = (requestId) => {
+                setLeaveRequests(prev => prev.filter(req => req.id !== requestId));
+                console.log('Demande supprimée:', requestId);
+            };
+
+            return (
+                <div className="min-h-screen bg-gray-50">
+                    {/* Header */}
+                    <div className="bg-white shadow-sm border-b border-gray-200">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div className="flex justify-between items-center py-6">
+                                <div>
+                                    <h1 className="text-2xl font-bold text-gray-900">Gestion des Congés V3 - Test Complet</h1>
+                                    <p className="text-gray-600">Test des fonctionnalités avancées : éligibilité, validation manager, demandes manuelles</p>
+                                </div>
+                                <div className="flex space-x-3">
+                                    <button
+                                        onClick={() => {
+                                            setEditingRequest(null);
+                                            setShowModal(true);
+                                        }}
+                                        className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+                                    >
+                                        <PlusIcon className="h-4 w-4 mr-2" />
+                                        Nouvelle Demande
+                                    </button>
+                                    <button
+                                        onClick={() => {
+                                            setEditingRequest(null);
+                                            setShowModal(true);
+                                        }}
+                                        className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700"
+                                    >
+                                        <UserGroupIcon className="h-4 w-4 mr-2" />
+                                        Demande Manuelle
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        {/* Métriques */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                            <div className="bg-white rounded-lg shadow p-6">
+                                <div className="flex items-center">
+                                    <div className="flex-shrink-0">
+                                        <DocumentTextIcon className="h-8 w-8 text-blue-600" />
+                                    </div>
+                                    <div className="ml-4">
+                                        <p className="text-sm font-medium text-gray-500">Total Demandes</p>
+                                        <p className="text-2xl font-semibold text-gray-900">{metrics.totalRequests}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="bg-white rounded-lg shadow p-6">
+                                <div className="flex items-center">
+                                    <div className="flex-shrink-0">
+                                        <ClockIcon className="h-8 w-8 text-yellow-600" />
+                                    </div>
+                                    <div className="ml-4">
+                                        <p className="text-sm font-medium text-gray-500">En Attente</p>
+                                        <p className="text-2xl font-semibold text-gray-900">{metrics.pendingRequests}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="bg-white rounded-lg shadow p-6">
+                                <div className="flex items-center">
+                                    <div className="flex-shrink-0">
+                                        <CheckCircleIcon className="h-8 w-8 text-green-600" />
+                                    </div>
+                                    <div className="ml-4">
+                                        <p className="text-sm font-medium text-gray-500">Approuvées</p>
+                                        <p className="text-2xl font-semibold text-gray-900">{metrics.approvedRequests}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="bg-white rounded-lg shadow p-6">
+                                <div className="flex items-center">
+                                    <div className="flex-shrink-0">
+                                        <CalendarDaysIcon className="h-8 w-8 text-purple-600" />
+                                    </div>
+                                    <div className="ml-4">
+                                        <p className="text-sm font-medium text-gray-500">Total Jours</p>
+                                        <p className="text-2xl font-semibold text-gray-900">{metrics.totalDays}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Filtres */}
+                        <div className="bg-white rounded-lg shadow mb-6 p-6">
+                            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
+                                <div className="flex-1 max-w-lg">
+                                    <div className="relative">
+                                        <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                                        <input
+                                            type="text"
+                                            placeholder="Rechercher..."
+                                            value={filters.search}
+                                            onChange={(e) => setFilters(prev => ({ ...prev, search: e.target.value }))}
+                                            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-wrap items-center space-x-4">
+                                    <select
+                                        value={filters.status}
+                                        onChange={(e) => setFilters(prev => ({ ...prev, status: e.target.value }))}
+                                        className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        <option value="">Tous les statuts</option>
+                                        <option value="pending">En attente</option>
+                                        <option value="approved">Approuvée</option>
+                                        <option value="rejected">Rejetée</option>
+                                        <option value="cancelled">Annulée</option>
+                                    </select>
+
+                                    <select
+                                        value={filters.leaveType}
+                                        onChange={(e) => setFilters(prev => ({ ...prev, leaveType: e.target.value }))}
+                                        className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        <option value="">Tous les types</option>
+                                        <option value="annual">Congés annuels</option>
+                                        <option value="sick">Congés maladie</option>
+                                        <option value="personal">Congés personnels</option>
+                                        <option value="maternity">Congé maternité</option>
+                                        <option value="paternity">Congé paternité</option>
+                                        <option value="other">Autre</option>
+                                    </select>
+
+                                    <select
+                                        value={filters.projectId}
+                                        onChange={(e) => setFilters(prev => ({ ...prev, projectId: e.target.value }))}
+                                        className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    >
+                                        <option value="">Tous les projets</option>
+                                        {projects.map(project => (
+                                            <option key={project.id} value={project.id}>
+                                                {project.title}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div className="flex items-center space-x-2">
+                                    <button
+                                        onClick={() => setViewMode('grid')}
+                                        className={`p-2 rounded-md ${viewMode === 'grid' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:text-gray-600'}`}
+                                    >
+                                        <Squares2X2Icon className="h-5 w-5" />
+                                    </button>
+                                    <button
+                                        onClick={() => setViewMode('list')}
+                                        className={`p-2 rounded-md ${viewMode === 'list' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:text-gray-600'}`}
+                                    >
+                                        <ListBulletIcon className="h-5 w-5" />
+                                    </button>
+                                    <button
+                                        onClick={() => setViewMode('table')}
+                                        className={`p-2 rounded-md ${viewMode === 'table' ? 'bg-blue-100 text-blue-600' : 'text-gray-400 hover:text-gray-600'}`}
+                                    >
+                                        <TableCellsIcon className="h-5 w-5" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Contenu principal */}
+                        {filteredRequests.length === 0 ? (
+                            <div className="text-center py-12">
+                                <CalendarDaysIcon className="mx-auto h-12 w-12 text-gray-400" />
+                                <h3 className="mt-2 text-sm font-medium text-gray-900">Aucune demande trouvée</h3>
+                                <p className="mt-1 text-sm text-gray-500">
+                                    Aucune demande ne correspond aux filtres appliqués.
+                                </p>
+                            </div>
+                        ) : (
+                            <div className="space-y-6">
+                                {viewMode === 'grid' && (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                        {filteredRequests.map((request) => (
+                                            <div key={request.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                                                <div className="flex items-start justify-between">
+                                                    <div className="flex-1">
+                                                        <h3 className="text-lg font-medium text-gray-900 mb-2">
+                                                            {getEmployeeName(request.employeeId)}
+                                                        </h3>
+                                                        <p className="text-sm text-gray-500 mb-2">
+                                                            {getLeaveTypeLabel(request.leaveType)} • {formatDate(request.startDate)} - {formatDate(request.endDate)}
+                                                        </p>
+                                                        {request.projectId && (
+                                                            <div className="mb-2">
+                                                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                                    📁 {getProjectName(request.projectId)}
+                                                                </span>
+                                                            </div>
+                                                        )}
+                                                        {!request.isEligible && (
+                                                            <div className="mb-2">
+                                                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                                    ⚠️ Non éligible: {request.eligibilityReason}
+                                                                </span>
+                                                            </div>
+                                                        )}
+                                                        {request.isManualRequest && (
+                                                            <div className="mb-2">
+                                                                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                                                    👤 Demande manuelle
+                                                                </span>
+                                                            </div>
+                                                        )}
+                                                        <div className="flex items-center space-x-4 text-sm text-gray-600">
+                                                            <span className="flex items-center">
+                                                                <CalendarIcon className="w-4 h-4 mr-1" />
+                                                                {formatDate(request.createdAt)}
+                                                            </span>
+                                                            <span className={`px-2 py-1 rounded-full text-xs font-medium flex items-center ${getStatusColor(request.status)}`}>
+                                                                {getStatusIcon(request.status)}
+                                                                <span className="ml-1">{request.status}</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                                                    <div className="flex space-x-2">
+                                                        <button
+                                                            onClick={() => {
+                                                                setEditingRequest(request);
+                                                                setShowModal(true);
+                                                            }}
+                                                            className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center"
+                                                        >
+                                                            <PencilIcon className="w-4 h-4 mr-1" />
+                                                            Modifier
+                                                        </button>
+                                                        {request.status === 'pending' && (
+                                                            <>
+                                                                <button
+                                                                    onClick={() => handleValidateRequest(request.id, 'approve')}
+                                                                    className="text-green-600 hover:text-green-800 text-sm font-medium flex items-center"
+                                                                >
+                                                                    <CheckCircleIcon className="w-4 h-4 mr-1" />
+                                                                    Valider
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => handleValidateRequest(request.id, 'reject')}
+                                                                    className="text-red-600 hover:text-red-800 text-sm font-medium flex items-center"
+                                                                >
+                                                                    <XMarkIcon className="w-4 h-4 mr-1" />
+                                                                    Rejeter
+                                                                </button>
+                                                            </>
+                                                        )}
+                                                        <button
+                                                            onClick={() => handleDeleteRequest(request.id)}
+                                                            className="text-red-600 hover:text-red-800 text-sm font-medium flex items-center"
+                                                        >
+                                                            <TrashIcon className="w-4 h-4 mr-1" />
+                                                            Supprimer
+                                                        </button>
+                                                    </div>
+                                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getLeaveTypeColor(request.leaveType)}`}>
+                                                        {getLeaveTypeLabel(request.leaveType)}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {viewMode === 'list' && (
+                                    <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                                        <div className="overflow-x-auto">
+                                            <table className="w-full">
+                                                <thead className="bg-gray-50">
+                                                    <tr>
+                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Employé</th>
+                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Projet</th>
+                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Période</th>
+                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Statut</th>
+                                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody className="bg-white divide-y divide-gray-200">
+                                                    {filteredRequests.map((request) => (
+                                                        <tr key={request.id} className="hover:bg-gray-50">
+                                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                                                {getEmployeeName(request.employeeId)}
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${getLeaveTypeColor(request.leaveType)}`}>
+                                                                    {getLeaveTypeLabel(request.leaveType)}
+                                                                </span>
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                                {request.projectId ? (
+                                                                    <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                                        📁 {getProjectName(request.projectId)}
+                                                                    </span>
+                                                                ) : (
+                                                                    <span className="text-sm text-gray-400">Aucun projet</span>
+                                                                )}
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                                                {formatDate(request.startDate)} - {formatDate(request.endDate)}
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap">
+                                                                <span className={`px-2 py-1 rounded-full text-xs font-medium flex items-center w-fit ${getStatusColor(request.status)}`}>
+                                                                    {getStatusIcon(request.status)}
+                                                                    <span className="ml-1">{request.status}</span>
+                                                                </span>
+                                                            </td>
+                                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                                <div className="flex space-x-2">
+                                                                    <button
+                                                                        onClick={() => {
+                                                                            setEditingRequest(request);
+                                                                            setShowModal(true);
+                                                                        }}
+                                                                        className="text-blue-600 hover:text-blue-900"
+                                                                    >
+                                                                        Modifier
+                                                                    </button>
+                                                                    {request.status === 'pending' && (
+                                                                        <>
+                                                                            <button
+                                                                                onClick={() => handleValidateRequest(request.id, 'approve')}
+                                                                                className="text-green-600 hover:text-green-900"
+                                                                            >
+                                                                                Valider
+                                                                            </button>
+                                                                            <button
+                                                                                onClick={() => handleValidateRequest(request.id, 'reject')}
+                                                                                className="text-red-600 hover:text-red-900"
+                                                                            >
+                                                                                Rejeter
+                                                                            </button>
+                                                                        </>
+                                                                    )}
+                                                                    <button
+                                                                        onClick={() => handleDeleteRequest(request.id)}
+                                                                        className="text-red-600 hover:text-red-900"
+                                                                    >
+                                                                        Supprimer
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Modal de test */}
+                    {showModal && (
+                        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                            <div className="bg-white rounded-xl shadow-2xl w-full max-w-2xl">
+                                <div className="bg-gradient-to-r from-blue-600 to-emerald-600 text-white p-6">
+                                    <div className="flex items-center justify-between">
+                                        <div>
+                                            <h2 className="text-2xl font-bold">
+                                                {editingRequest ? 'Modifier la demande' : 'Nouvelle demande de congé'}
+                                            </h2>
+                                            <p className="text-blue-100 mt-1">
+                                                Test des fonctionnalités V3
+                                            </p>
+                                        </div>
+                                        <button
+                                            onClick={() => setShowModal(false)}
+                                            className="text-white hover:text-gray-200 transition-colors p-2 hover:bg-white hover:bg-opacity-20 rounded-lg"
+                                        >
+                                            <XMarkIcon className="w-6 h-6" />
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="p-6">
+                                    <div className="space-y-4">
+                                        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                            <div className="flex items-center">
+                                                <ShieldCheckIcon className="w-5 h-5 text-yellow-600 mr-2" />
+                                                <span className="text-sm font-medium text-yellow-800">
+                                                    Mode demande manuelle disponible pour les managers
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                                            <div className="flex items-center">
+                                                <CheckCircleIcon className="w-5 h-5 text-green-600 mr-2" />
+                                                <span className="text-sm font-medium text-green-800">
+                                                    Vérification d'éligibilité automatique implémentée
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                            <div className="flex items-center">
+                                                <UserGroupIcon className="w-5 h-5 text-blue-600 mr-2" />
+                                                <span className="text-sm font-medium text-blue-800">
+                                                    Sélection du manager pour validation
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="mt-6 flex justify-end space-x-3">
+                                        <button
+                                            onClick={() => setShowModal(false)}
+                                            className="px-6 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+                                        >
+                                            Fermer
+                                        </button>
+                                        <button
+                                            onClick={() => {
+                                                console.log('Test des fonctionnalités V3');
+                                                setShowModal(false);
+                                            }}
+                                            className="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                                        >
+                                            Tester
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        // Rendu de l'application
+        ReactDOM.render(React.createElement(LeaveManagementV3Test), document.getElementById('root'));
+    </script>
+</body>
+</html>

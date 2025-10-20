@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import React, { useState, useEffect } from 'react';
+import Avatar from './common/Avatar';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { useLocalization } from '../contexts/LocalizationContext';
 import { Language, AppNotification } from '../types';
 import NexusFlowIcon from './icons/NexusFlowIcon';
+import NotificationCenter from './NotificationCenter';
+import { notificationService, Notification } from '../services/notificationService';
 
 interface HeaderProps {
   toggleSidebar: () => void;
@@ -18,13 +21,44 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, setView, notifications, 
   const [isProfileOpen, setProfileOpen] = useState(false);
   const [isLangOpen, setLangOpen] = useState(false);
   const [isNotificationsOpen, setNotificationsOpen] = useState(false);
+  const [supabaseNotifications, setSupabaseNotifications] = useState<Notification[]>([]);
+  const [unreadCount, setUnreadCount] = useState(0);
 
   const handleNavigate = (view: string) => {
     setView(view);
     setProfileOpen(false);
   }
 
-  const unreadCount = notifications.filter(n => !n.isRead).length;
+  // Charger les notifications Supabase
+  const loadNotifications = async () => {
+    if (!user?.id) return;
+    
+    try {
+      const userNotifications = await notificationService.getByUser(user.id);
+      setSupabaseNotifications(userNotifications);
+      setUnreadCount(userNotifications.filter(n => !n.read).length);
+    } catch (error) {
+      console.error('❌ Erreur chargement notifications:', error);
+    }
+  };
+
+  // Charger les notifications au montage
+  useEffect(() => {
+    if (user?.id) {
+      loadNotifications();
+    }
+  }, [user?.id]);
+
+  // Combiner les notifications (ancien système + nouveau système)
+  const allNotifications = [...notifications, ...supabaseNotifications.map(n => ({
+    id: n.id,
+    message: n.message,
+    date: n.created_at,
+    isRead: n.read,
+    entityType: n.type
+  }))];
+
+  const totalUnreadCount = unreadCount + notifications.filter(n => !n.isRead).length;
 
   return (
     <header className="bg-white shadow-md sticky top-0 z-40">
@@ -47,40 +81,12 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, setView, notifications, 
             <div className="relative">
               <button onClick={() => setNotificationsOpen(!isNotificationsOpen)} className="text-gray-600 hover:text-emerald-600 relative">
                 <i className="fas fa-bell fa-lg"></i>
-                {unreadCount > 0 && (
+                {totalUnreadCount > 0 && (
                   <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center border-2 border-white">
-                    {unreadCount}
+                    {totalUnreadCount}
                   </span>
                 )}
               </button>
-              {isNotificationsOpen && (
-                <div className="absolute right-0 mt-2 w-80 bg-white rounded-md shadow-lg py-1 z-50">
-                  <div className="p-3 border-b flex justify-between items-center">
-                    <h3 className="font-semibold text-sm">{t('notifications')}</h3>
-                    <button onClick={onClearAllNotifications} className="text-xs text-blue-600 hover:underline">{t('clear_all')}</button>
-                  </div>
-                  <div className="max-h-80 overflow-y-auto">
-                    {notifications.length > 0 ? (
-                      notifications.map(n => (
-                        <div key={n.id} className={`p-3 text-sm text-gray-700 flex items-start space-x-3 hover:bg-gray-100 ${!n.isRead ? 'bg-blue-50' : ''}`}>
-                          <i className={`fas ${n.entityType === 'invoice' ? 'fa-file-invoice-dollar' : 'fa-money-bill-wave'} text-emerald-500 mt-1`}></i>
-                          <div className="flex-grow">
-                            <p>{n.message}</p>
-                            <span className="text-xs text-gray-400">{new Date(n.date).toLocaleDateString()}</span>
-                          </div>
-                          {!n.isRead && (
-                            <button onClick={() => onMarkNotificationAsRead(n.id)} title={t('mark_as_read')} className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
-                              <i className="far fa-circle text-blue-500 hover:fa-check-circle"></i>
-                            </button>
-                          )}
-                        </div>
-                      ))
-                    ) : (
-                       <p className="text-center text-gray-500 text-sm py-4">{t('no_notifications')}</p>
-                    )}
-                  </div>
-                </div>
-              )}
             </div>
             
             {/* Language Switcher */}
@@ -115,6 +121,12 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, setView, notifications, 
           </div>
         </div>
       </div>
+      
+      {/* Centre de notifications */}
+      <NotificationCenter 
+        isOpen={isNotificationsOpen} 
+        onClose={() => setNotificationsOpen(false)} 
+      />
     </header>
   );
 };

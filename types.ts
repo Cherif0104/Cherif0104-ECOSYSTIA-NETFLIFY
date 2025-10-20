@@ -2,8 +2,45 @@
 
 export type Role = 'student' | 'employer' | 'super_administrator' | 'administrator' | 'manager' | 'supervisor' | 'editor' | 'entrepreneur' | 'funder' | 'mentor' | 'intern' | 'trainer' | 'implementer' | 'coach' | 'facilitator' | 'publisher' | 'producer' | 'artist' | 'alumni';
 
+export interface KeyResult {
+  id: string;
+  objectiveId?: string;
+  title: string;
+  description?: string;
+  target: number;
+  current: number;
+  unit: string;
+  progress: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Objective {
+  id: string;
+  projectId?: string;
+  title: string;
+  description?: string;
+  category: string;
+  priority: 'Low' | 'Medium' | 'High' | 'Critical';
+  status: 'Not Started' | 'In Progress' | 'Completed' | 'On Hold' | 'Cancelled';
+  startDate: string;
+  endDate: string;
+  progress: number;
+  owner: string;
+  team: string[];
+  keyResults: KeyResult[];
+  createdAt?: string;
+  updatedAt?: string;
+  period?: 'Q1' | 'Q2' | 'Q3' | 'Q4' | 'Annual';
+  quarter?: string;
+  year?: number;
+  ownerId?: string;
+}
+
+
+
 export interface User {
-  id: number;
+  id: string;
   name: string;
   email: string;
   avatar: string;
@@ -21,13 +58,7 @@ export interface FileAttachment {
 export type EvidenceDocument = FileAttachment;
 export type Receipt = FileAttachment;
 
-export interface Lesson {
-  id: string;
-  title: string;
-  type: 'video' | 'reading' | 'quiz';
-  duration: string;
-  icon: string;
-}
+
 
 export interface Module {
   id: string;
@@ -37,27 +68,75 @@ export interface Module {
 }
 
 export interface Course {
-  id: number;
+  id: string;
   title: string;
   instructor: string;
-  duration: string;
+  duration: number; // in minutes
   progress: number;
   icon: string;
   description: string;
   modules: Module[];
   completedLessons?: string[];
+  level: 'beginner' | 'intermediate' | 'advanced';
+  category: string;
+  status: 'active' | 'completed' | 'draft';
+  rating: number;
+  studentsCount: number;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+  lessons: Lesson[];
+}
+
+export interface Lesson {
+  id: string;
+  title: string;
+  description: string;
+  duration: number; // in minutes
+  order: number;
+  videoUrl?: string;
+  resources?: string[];
 }
 
 export interface Job {
-  id: number;
+  id: string;
   title: string;
   company: string;
   location: string;
-  type: 'Full-time' | 'Part-time' | 'Contract';
+  type: 'Full-time' | 'Part-time' | 'Contract' | 'CDI' | 'CDD';
   postedDate: string;
   description: string;
   requiredSkills: string[];
   applicants: User[];
+  department: string;
+  level: 'junior' | 'intermediate' | 'senior' | 'expert';
+  salary: {
+    min: number;
+    max: number;
+    currency: string;
+  };
+  status: 'open' | 'closed' | 'paused';
+  requirements: string[];
+  benefits: string[];
+  applicationsCount: number;
+  createdAt: Date;
+  updatedAt: Date;
+  deadline: Date;
+}
+
+export interface JobApplication {
+  id: string;
+  jobId: string;
+  candidateName: string;
+  candidateEmail: string;
+  candidatePhone: string;
+  resume: string;
+  coverLetter: string;
+  status: 'pending' | 'reviewed' | 'interviewed' | 'accepted' | 'rejected';
+  experience: number;
+  skills: string[];
+  appliedAt: Date;
+  notes?: string;
 }
 
 export interface Task {
@@ -80,33 +159,29 @@ export interface Risk {
 }
 
 export interface Project {
-  id: number;
+  id: string;
   title: string;
   description: string;
-  status: 'Not Started' | 'In Progress' | 'Completed';
+  status: 'Not Started' | 'In Progress' | 'Completed' | 'On Hold' | 'Cancelled';
+  priority: 'Low' | 'Medium' | 'High' | 'Critical';
+  startDate?: string;  // AJOUTÉ pour alignement MVP client
   dueDate: string;
+  budget?: number;
+  client?: string;
+  tags: string[];
   team: User[];
   tasks: Task[];
   risks: Risk[];
+  owner?: string;      // AJOUTÉ pour compatibilité
+  ownerId?: string;    // Garder pour Supabase
+  createdAt?: string;
+  updatedAt?: string;
 }
 
-export interface KeyResult {
-  id: string;
-  title: string;
-  current: number;
-  target: number;
-  unit: string;
-}
 
-export interface Objective {
-  id: string;
-  projectId: number;
-  title: string;
-  keyResults: KeyResult[];
-}
 
 export interface Contact {
-  id: number;
+  id: string;
   name: string;
   workEmail: string;
   personalEmail?: string;
@@ -119,7 +194,7 @@ export interface Contact {
 }
 
 export interface Document {
-  id: number;
+  id: string;
   title: string;
   content: string;
   createdAt: string;
@@ -127,10 +202,10 @@ export interface Document {
 }
 
 export interface TimeLog {
-  id: number;
-  userId: number;
+  id: string;
+  userId: string;
   entityType: 'project' | 'course' | 'task';
-  entityId: number | string;
+  entityId: string;
   entityTitle: string;
   date: string;
   duration: number; // in minutes
@@ -138,18 +213,29 @@ export interface TimeLog {
 }
 
 export interface LeaveRequest {
-  id: number;
-  userId: number;
-  userName: string;
-  userAvatar: string;
+  id: string;
+  employeeId: string;  // ID de l'employé
+  leaveType: 'annual' | 'sick' | 'personal' | 'maternity' | 'paternity' | 'other';  // Type de congé
   startDate: string;
   endDate: string;
   reason: string;
-  status: 'Pending' | 'Approved' | 'Rejected';
+  status: 'pending' | 'approved' | 'rejected' | 'cancelled';  // Statut de la demande
+  projectId?: string;  // ID du projet associé
+  daysRequested: number;  // Nombre de jours demandés
+  approvedBy?: string;  // ID du manager qui a validé/rejeté
+  approvedAt?: string;  // Date de validation/rejet
+  createdAt?: string;
+  updatedAt?: string;
+  // Nouvelles propriétés pour l'éligibilité et la validation
+  isEligible?: boolean;  // Si l'employé est éligible pour un congé
+  eligibilityReason?: string;  // Raison de non-éligibilité
+  managerId?: string;  // Manager assigné pour validation
+  isManualRequest?: boolean;  // Demande manuelle créée par un manager
+  createdBy?: string;  // Qui a créé la demande (employé ou manager)
 }
 
 export interface Invoice {
-  id: number;
+  id: string;
   invoiceNumber: string;
   clientName: string;
   amount: number;
@@ -158,11 +244,11 @@ export interface Invoice {
   receipt?: Receipt;
   paidDate?: string;
   paidAmount?: number;
-  recurringSourceId?: number;
+  recurringSourceId?: string;
 }
 
 export interface Expense {
-  id: number;
+  id: string;
   category: string;
   description: string;
   amount: number;
@@ -171,13 +257,13 @@ export interface Expense {
   receipt?: Receipt;
   status: 'Paid' | 'Unpaid';
   budgetItemId?: string;
-  recurringSourceId?: number;
+  recurringSourceId?: string;
 }
 
 export type RecurrenceFrequency = 'Monthly' | 'Quarterly' | 'Annually';
 
 export interface RecurringInvoice {
-    id: number;
+    id: string;
     clientName: string;
     amount: number;
     frequency: RecurrenceFrequency;
@@ -187,7 +273,7 @@ export interface RecurringInvoice {
 }
 
 export interface RecurringExpense {
-    id: number;
+    id: string;
     category: string;
     description: string;
     amount: number;
@@ -210,23 +296,23 @@ export interface BudgetLine {
 }
 
 export interface Budget {
-    id: number;
+    id: string;
     title: string;
     type: 'Project' | 'Office';
     amount: number;
     startDate: string;
     endDate: string;
-    projectId?: number;
+    projectId?: string;
     budgetLines: BudgetLine[];
 }
 
 export interface Meeting {
-    id: number;
+    id: string;
     title: string;
     startTime: string; // ISO string
     endTime: string; // ISO string
     attendees: User[];
-    organizerId: number;
+    organizerId: string;
     description?: string;
 }
 
@@ -243,7 +329,7 @@ export interface AppNotification {
     message: string;
     date: string;
     entityType: 'invoice' | 'expense';
-    entityId: number;
+    entityId: string;
     isRead: boolean;
 }
 
@@ -252,8 +338,41 @@ export interface AgentMessage {
   content: string;
 }
 
-export interface Toast {
-    id: number;
-    message: string;
-    type: 'success' | 'error' | 'info';
+export interface CourseEnrollment {
+  id: string;
+  userId: string;
+  courseId: string;
+  enrolledDate: string;
+  progress: number;  // 0-100
+  completedLessons: string[];  // Array of lesson IDs
+  status: 'Active' | 'Completed' | 'Dropped';
+  completionDate?: string;
+}
+
+
+export interface KnowledgeArticle {
+  id: string;
+  title: string;
+  content: string;
+  summary: string;
+  category: string;
+  type: 'article' | 'tutorial' | 'faq' | 'guide';
+  status: 'published' | 'draft' | 'archived';
+  tags: string[];
+  author: string;
+  views: number;
+  rating: number;
+  helpful: number;
+  createdAt: Date;
+  updatedAt: Date;
+  lastViewed?: Date;
+}
+
+export interface KnowledgeCategory {
+  id: string;
+  name: string;
+  description: string;
+  color: 'blue' | 'green' | 'purple' | 'orange' | 'red';
+  articleCount: number;
+  createdAt: Date;
 }

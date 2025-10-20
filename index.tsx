@@ -1,9 +1,11 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// CSS via CDN dans index.html
 import App from './App';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContextSupabase';
 import { LocalizationProvider } from './contexts/LocalizationContext';
+import { NotificationProvider } from './components/common/Notification';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) {
@@ -13,10 +15,12 @@ if (!rootElement) {
 const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
-    <AuthProvider>
+    <NotificationProvider>
       <LocalizationProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </LocalizationProvider>
-    </AuthProvider>
+    </NotificationProvider>
   </React.StrictMode>
 );

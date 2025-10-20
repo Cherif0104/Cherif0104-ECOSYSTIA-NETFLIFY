@@ -1,0 +1,23 @@
+// Configuration de l'application
+export const config = {
+  APPWRITE_ENDPOINT: 'https://nyc.cloud.appwrite.io/v1',
+  APPWRITE_PROJECT_ID: '68ee2dc2001f0f499c02',
+  APPWRITE_DATABASE_ID: '68ee527d002813e4e0ca',
+  APPWRITE_API_KEY: 'standard_02717fc47c45cff4edc16624ae9127ca436dff8bd115037e795dec54eb8c50f53d989078ad57f2ca52daa41ce272dfc205bca21613f2d07c98525613e3da936d71ff2c5804b392c7c79760dcd3c8a7998c1c2078d73bd310b8dde7224c14fb802c5302625bd3a3fca79c7ca5d52b4585dcd959a9810d387a065f2e64af71df38',
+  GEMINI_API_KEY: 'AIzaSyBvQZvQZvQZvQZvQZvQZvQZvQZvQZvQZvQZvQ',
+  
+  // Collections
+  USERS_COLLECTION_ID: 'users',
+  PROJECTS_COLLECTION_ID: 'projects',
+  OBJECTIVES_COLLECTION_ID: 'objectives',
+  KEY_RESULTS_COLLECTION_ID: 'key_results',
+  INVOICES_COLLECTION_ID: 'invoices',
+  EXPENSES_COLLECTION_ID: 'expenses',
+  CONTACTS_COLLECTION_ID: 'contacts',
+  LEADS_COLLECTION_ID: 'leads',
+  TIME_LOGS_COLLECTION_ID: 'time_logs',
+  MEETINGS_COLLECTION_ID: 'meetings',
+  RECURRING_INVOICES_COLLECTION_ID: 'recurring_invoices',
+  RECURRING_EXPENSES_COLLECTION_ID: 'recurring_expenses',
+  BUDGETS_COLLECTION_ID: 'budgets'
+};

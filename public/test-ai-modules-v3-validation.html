@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modules AI Coach & Gen AI Lab V3</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .header h1 {
+            color: #1f2937;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .header p {
+            color: #6b7280;
+            margin: 10px 0 0 0;
+            font-size: 1.1rem;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .module-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+        .module-card:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+        }
+        .module-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .module-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 24px;
+        }
+        .ai-coach-icon {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .gen-ai-icon {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+        .module-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+        .module-description {
+            color: #6b7280;
+            margin: 10px 0 20px 0;
+            line-height: 1.6;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .features-list li {
+            padding: 8px 0;
+            color: #374151;
+            position: relative;
+            padding-left: 25px;
+        }
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .test-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .status-completed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        .architecture-info {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .architecture-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0369a1;
+            margin: 0 0 15px 0;
+        }
+        .architecture-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .architecture-list li {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 6px;
+            border: 1px solid #e0f2fe;
+            color: #0c4a6e;
+            font-weight: 500;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Test Modules AI V3</h1>
+            <p>Validation des modules AI Coach et Gen AI Lab standardisés selon l'architecture V3</p>
+        </div>
+
+        <div class="modules-grid">
+            <!-- AI Coach Module -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon ai-coach-icon">🤖</div>
+                    <div>
+                        <h3 class="module-title">AI Coach</h3>
+                        <span class="status-badge status-completed">✅ Standardisé V3</span>
+                    </div>
+                </div>
+                <p class="module-description">
+                    Assistant IA personnel pour le développement professionnel avec sessions de chat, recommandations personnalisées et coaching intelligent.
+                </p>
+                <ul class="features-list">
+                    <li>Sessions de chat interactives</li>
+                    <li>Recommandations personnalisées</li>
+                    <li>Système de notation et favoris</li>
+                    <li>Analytics et métriques</li>
+                    <li>Persistance Supabase complète</li>
+                    <li>Architecture V3 standardisée</li>
+                </ul>
+                <a href="http://localhost:5173/#/ai_coach" class="test-button" target="_blank">
+                    🧪 Tester AI Coach
+                </a>
+                <a href="http://localhost:5173/#/ai_coach" class="test-button" target="_blank">
+                    📊 Voir Analytics
+                </a>
+            </div>
+
+            <!-- Gen AI Lab Module -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-icon gen-ai-icon">🧠</div>
+                    <div>
+                        <h3 class="module-title">Gen AI Lab</h3>
+                        <span class="status-badge status-completed">✅ Standardisé V3</span>
+                    </div>
+                </div>
+                <p class="module-description">
+                    Laboratoire d'expérimentation IA pour créer, tester et déployer des modèles d'intelligence artificielle avec playground interactif.
+                </p>
+                <ul class="features-list">
+                    <li>Expériences IA configurables</li>
+                    <li>Gestion des modèles IA</li>
+                    <li>Playground interactif</li>
+                    <li>Métriques de performance</li>
+                    <li>Persistance Supabase complète</li>
+                    <li>Architecture V3 standardisée</li>
+                </ul>
+                <a href="http://localhost:5173/#/gen_ai_lab" class="test-button" target="_blank">
+                    🧪 Tester Gen AI Lab
+                </a>
+                <a href="http://localhost:5173/#/gen_ai_lab" class="test-button" target="_blank">
+                    🔬 Playground IA
+                </a>
+            </div>
+        </div>
+
+        <div class="architecture-info">
+            <h3 class="architecture-title">🏗️ Architecture V3 Standardisée</h3>
+            <ul class="architecture-list">
+                <li>✅ Hook useFeedback intégré</li>
+                <li>✅ Composant FeedbackDisplay</li>
+                <li>✅ Gestion d'erreurs unifiée</li>
+                <li>✅ Services Supabase complets</li>
+                <li>✅ Types TypeScript définis</li>
+                <li>✅ Persistance de données</li>
+                <li>✅ Interface utilisateur moderne</li>
+                <li>✅ CRUD operations complètes</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p>🚀 Modules AI Coach et Gen AI Lab prêts pour la production</p>
+            <p><strong>Architecture V3</strong> • <strong>Supabase</strong> • <strong>TypeScript</strong> • <strong>React</strong></p>
+        </div>
+    </div>
+
+    <script>
+        // Animation des cartes au survol
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Vérification de la disponibilité du serveur
+        fetch('http://localhost:5173')
+            .then(response => {
+                if (response.ok) {
+                    console.log('✅ Serveur de développement disponible');
+                }
+            })
+            .catch(error => {
+                console.warn('⚠️ Serveur de développement non disponible:', error);
+            });
+    </script>
+</body>
+</html>

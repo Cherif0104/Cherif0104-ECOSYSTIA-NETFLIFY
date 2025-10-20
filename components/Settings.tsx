@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useLocalization } from '../contexts/LocalizationContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { Language } from '../types';
+import Avatar from './common/Avatar';
 
 interface SettingsProps {
   reminderDays: number;
@@ -36,7 +37,7 @@ const Settings: React.FC<SettingsProps> = ({ reminderDays, onSetReminderDays }) 
         <div className="bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-lg font-semibold text-gray-800 border-b pb-3 mb-4">{t('profile')}</h2>
           <div className="flex items-center space-x-4">
-            <img src={user?.avatar} alt={user?.name} className="w-20 h-20 rounded-full"/>
+            <Avatar user={user} size="xl" />
             <div>
               <p className="font-bold text-xl">{user?.name}</p>
               <p className="text-gray-500">{user?.email}</p>

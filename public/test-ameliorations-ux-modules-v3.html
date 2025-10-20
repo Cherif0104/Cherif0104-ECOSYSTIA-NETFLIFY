@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Améliorations UX - Modules V3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px; }
+        .success { background-color: #f0f9ff; border-color: #0ea5e9; }
+        .warning { background-color: #fffbeb; border-color: #f59e0b; }
+        .info { background-color: #f0fdf4; border-color: #22c55e; }
+        .component { background-color: #f8fafc; border-color: #cbd5e1; }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">🎨 Test Améliorations UX - Modules V3</h1>
+        
+        <div class="test-section success">
+            <h2 class="text-xl font-semibold text-blue-800 mb-4">✅ Composants UX Créés</h2>
+            <ul class="list-disc list-inside space-y-2 text-blue-700">
+                <li><strong>Toast Component :</strong> Messages de feedback avec auto-dismiss</li>
+                <li><strong>LoadingButton Component :</strong> Boutons avec états de chargement</li>
+                <li><strong>useFeedback Hook :</strong> Gestion centralisée des états de feedback</li>
+                <li><strong>FeedbackDisplay Component :</strong> Affichage unifié des messages</li>
+            </ul>
+        </div>
+
+        <div class="test-section component">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">🔧 Composants Techniques</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-4 rounded-lg border">
+                    <h3 class="font-semibold text-gray-800 mb-2">Toast Component</h3>
+                    <p class="text-sm text-gray-600 mb-3">Messages de feedback avec types : success, error, warning, info</p>
+                    <div class="space-y-2">
+                        <div class="p-2 bg-green-50 border border-green-200 rounded text-sm text-green-800">
+                            ✅ Succès - Action effectuée
+                        </div>
+                        <div class="p-2 bg-red-50 border border-red-200 rounded text-sm text-red-800">
+                            ❌ Erreur - Action échouée
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border">
+                    <h3 class="font-semibold text-gray-800 mb-2">LoadingButton Component</h3>
+                    <p class="text-sm text-gray-600 mb-3">Boutons avec états de chargement et variants</p>
+                    <div class="space-y-2">
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded text-sm">
+                            Bouton Normal
+                        </button>
+                        <button class="px-4 py-2 bg-blue-600 text-white rounded text-sm opacity-50 cursor-not-allowed">
+                            🔄 Chargement...
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border">
+                    <h3 class="font-semibold text-gray-800 mb-2">useFeedback Hook</h3>
+                    <p class="text-sm text-gray-600 mb-3">Gestion centralisée des états de feedback</p>
+                    <div class="text-xs text-gray-500">
+                        <code>const { isSubmitting, setSuccess, setError } = useFeedback();</code>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg border">
+                    <h3 class="font-semibold text-gray-800 mb-2">FeedbackDisplay Component</h3>
+                    <p class="text-sm text-gray-600 mb-3">Affichage unifié des messages de feedback</p>
+                    <div class="text-xs text-gray-500">
+                        <code>&lt;FeedbackDisplay success={true} error={null} /&gt;</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section warning">
+            <h2 class="text-xl font-semibold text-orange-800 mb-4">🧪 Tests à Effectuer</h2>
+            <ol class="list-decimal list-inside space-y-3 text-orange-700">
+                <li><strong>Test Goals Module :</strong>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li>Créer un nouvel objectif</li>
+                        <li>Modifier un objectif existant</li>
+                        <li>Supprimer un objectif (vérifier loading state)</li>
+                        <li>Vérifier les messages de feedback</li>
+                    </ul>
+                </li>
+                <li><strong>Test Time Tracking Module :</strong>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li>Créer une nouvelle entrée de temps</li>
+                        <li>Modifier une entrée existante</li>
+                        <li>Supprimer une entrée (vérifier loading state)</li>
+                        <li>Vérifier les messages de feedback</li>
+                    </ul>
+                </li>
+                <li><strong>Test Projects Module :</strong>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li>Créer un projet avec tous les champs</li>
+                        <li>Modifier un projet existant</li>
+                        <li>Supprimer un projet (vérifier loading state)</li>
+                        <li>Vérifier les messages de feedback</li>
+                    </ul>
+                </li>
+                <li><strong>Test Responsive Design :</strong>
+                    <ul class="list-disc list-inside ml-4 mt-2 space-y-1">
+                        <li>Vérifier sur mobile (320px)</li>
+                        <li>Vérifier sur tablette (768px)</li>
+                        <li>Vérifier sur desktop (1024px+)</li>
+                        <li>Vérifier les touch targets (min 44x44px)</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="test-section info">
+            <h2 class="text-xl font-semibold text-green-800 mb-4">🎯 Résultats Attendus</h2>
+            <ul class="list-disc list-inside space-y-2 text-green-700">
+                <li>✅ <strong>Loading States :</strong> Tous les boutons d'action avec états de chargement</li>
+                <li>✅ <strong>Feedback Visuel :</strong> Messages de succès/erreur avec icônes</li>
+                <li>✅ <strong>UX Cohérente :</strong> Même expérience dans tous les modules V3</li>
+                <li>✅ <strong>Composants Réutilisables :</strong> Toast, LoadingButton, FeedbackDisplay</li>
+                <li>✅ <strong>Hook Centralisé :</strong> useFeedback pour gestion d'état</li>
+                <li>✅ <strong>Responsive Design :</strong> Adaptation mobile/tablette/desktop</li>
+                <li>✅ <strong>Accessibilité :</strong> Touch targets et contrastes appropriés</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">📋 Modules V3 Améliorés</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg border">
+                    <h3 class="font-semibold text-gray-800 mb-2">✅ GoalsUltraModernV3</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Loading states ajoutés</li>
+                        <li>• Messages de feedback</li>
+                        <li>• Hook useFeedback intégré</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg border">
+                    <h3 class="font-semibold text-gray-800 mb-2">✅ TimeTrackingUltraModernV3</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Loading states ajoutés</li>
+                        <li>• Messages de feedback</li>
+                        <li>• Hook useFeedback intégré</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-4 rounded-lg border">
+                    <h3 class="font-semibold text-gray-800 mb-2">✅ ProjectsUltraModernV2</h3>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Déjà amélioré</li>
+                        <li>• Feedback visuel complet</li>
+                        <li>• Validation temps réel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section success">
+            <h2 class="text-xl font-semibold text-green-800 mb-4">🚀 Avantages de Cette Approche</h2>
+            <ul class="list-disc list-inside space-y-2 text-green-700">
+                <li><strong>Cohérence UX :</strong> Même expérience dans tous les modules</li>
+                <li><strong>Maintenabilité :</strong> Composants réutilisables et centralisés</li>
+                <li><strong>Performance :</strong> Hook optimisé avec useCallback</li>
+                <li><strong>Accessibilité :</strong> Touch targets et contrastes appropriés</li>
+                <li><strong>Responsive :</strong> Adaptation automatique mobile/desktop</li>
+                <li><strong>Feedback :</strong> Messages clairs avec auto-dismiss</li>
+                <li><strong>Loading States :</strong> Indicateurs visuels pendant les actions</li>
+            </ul>
+        </div>
+
+        <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">📝 Notes</h3>
+            <p class="text-blue-700 text-sm">
+                Ces améliorations UX transforment tous les modules V3 en une expérience utilisateur moderne et cohérente. 
+                Les composants réutilisables garantissent la maintenabilité et la cohérence à travers toute l'application.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

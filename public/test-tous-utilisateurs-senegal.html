@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Tous Utilisateurs SENEGEL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        .user-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .user-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .user-card h3 {
+            margin: 0 0 10px 0;
+            color: #fbbf24;
+        }
+        .user-info {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        .role-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .role-hr { background: #10b981; color: white; }
+        .role-manager { background: #3b82f6; color: white; }
+        .role-analyst { background: #8b5cf6; color: white; }
+        .role-finance { background: #f59e0b; color: white; }
+        .role-sales { background: #ef4444; color: white; }
+        .role-developer { background: #06b6d4; color: white; }
+        .role-operations { background: #84cc16; color: white; }
+        .role-marketing { background: #ec4899; color: white; }
+        .role-support { background: #6b7280; color: white; }
+        .role-designer { background: #f97316; color: white; }
+        .role-content { background: #14b8a6; color: white; }
+        .role-tester { background: #a855f7; color: white; }
+        .role-administrator { background: #dc2626; color: white; }
+        .role-super_admin { background: #7c2d12; color: white; }
+        .test-section {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: transform 0.2s;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success { background: rgba(34, 197, 94, 0.2); border: 1px solid #22c55e; color: #22c55e; }
+        .error { background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #ef4444; }
+        .info { background: rgba(59, 130, 246, 0.2); border: 1px solid #3b82f6; color: #3b82f6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👥 Tous les Utilisateurs SENEGEL</h1>
+        
+        <div class="user-grid" id="userGrid">
+            <!-- Les utilisateurs seront chargés ici -->
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Tests de Connexion</h2>
+            <button class="test-button" onclick="testAllUsers()">Tester Tous les Utilisateurs</button>
+            <button class="test-button" onclick="testRandomUser()">Tester un Utilisateur Aléatoire</button>
+            <button class="test-button" onclick="clearResults()">Effacer les Résultats</button>
+            
+            <div id="testResults"></div>
+        </div>
+    </div>
+
+    <script>
+        const users = [
+            { email: "admin@senegel.org", name: "Super Admin", role: "super_admin", phone: null },
+            { email: "Mariemebl3@gmail.com", name: "Marieme BADIANE", role: "hr", phone: "77 926 24 77" },
+            { email: "rokhaya@senegel.org", name: "Rokhaya BODIAN", role: "manager", phone: "77 520 32 78" },
+            { email: "nabyaminatoul08@gmail.com", name: "Amy DIAGNE", role: "analyst", phone: "77 905 14 87" },
+            { email: "awadiagne1003@gmail.com", name: "Awa DIAGNE", role: "finance", phone: "77 453 44 76" },
+            { email: "adjadiallo598@gmail.com", name: "Adja Mame Sarr DIALLO", role: "sales", phone: "77 477 39 39" },
+            { email: "mdiasse26@gmail.com", name: "Mouhamadou Lamine DIASSE", role: "developer", phone: "77 194 87 25" },
+            { email: "diopiste@yahoo.fr", name: "Ousmane DIOP", role: "developer", phone: "77 511 97 91" },
+            { email: "bafode.drame@senegel.org", name: "Bafode DRAME", role: "operations", phone: "77 650 96 68" },
+            { email: "adjabsf92@gmail.com", name: "Adja Bineta Sylla FAYE", role: "hr", phone: "77 484 55 80" },
+            { email: "gningue04@gmail.com", name: "Oumar GNINGUE", role: "sales", phone: "77 768 49 99" },
+            { email: "onevisionbmca@gmail.com", name: "Mariame Diouldé GUINDO", role: "marketing", phone: "77 564 44 40" },
+            { email: "rokhayakebe23@gmail.com", name: "Rokhaya KEBE", role: "support", phone: "76 194 72 04" },
+            { email: "lyamadoudia@gmail.com", name: "Amadou Dia LY", role: "manager", phone: "+1 (971) 270-8619" },
+            { email: "wowastudios@gmail.com", name: "Cheikh Mohamed NDIAYE", role: "designer", phone: "77 283 55 14" },
+            { email: "cnyafouna@gmail.com", name: "Charles NYAFOUNA", role: "manager", phone: "+44 7545 341935" },
+            { email: "pape@senegel.org", name: "Alioune Badara Pape SAMB", role: "administrator", phone: "+1 (202) 557-4901" },
+            { email: "sambrokhy700@gmail.com", name: "Rokhaya SAMB", role: "content", phone: "77 286 33 12" },
+            { email: "adamasene.fa@gmail.com", name: "Adama Mandaw SENE", role: "tester", phone: "77 705 32 51" },
+            { email: "contact@senegel.org", name: "CONTACT SENEGEL", role: "super_admin", phone: "77 853 33 99" }
+        ];
+
+        const defaultPassword = "Senegel2024!";
+
+        function displayUsers() {
+            const userGrid = document.getElementById('userGrid');
+            userGrid.innerHTML = '';
+
+            users.forEach(user => {
+                const userCard = document.createElement('div');
+                userCard.className = 'user-card';
+                userCard.innerHTML = `
+                    <h3>${user.name}</h3>
+                    <div class="user-info"><strong>Email:</strong> ${user.email}</div>
+                    <div class="user-info"><strong>Téléphone:</strong> ${user.phone || 'N/A'}</div>
+                    <div class="role-badge role-${user.role}">${user.role.toUpperCase()}</div>
+                `;
+                userGrid.appendChild(userCard);
+            });
+        }
+
+        function addResult(message, type = 'info') {
+            const results = document.getElementById('testResults');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.innerHTML = message;
+            results.appendChild(div);
+        }
+
+        function clearResults() {
+            document.getElementById('testResults').innerHTML = '';
+        }
+
+        async function testUserLogin(email) {
+            try {
+                const response = await fetch('https://nigfrebfpkeoreaaiqzu.supabase.co/rest/v1/users?select=*&email=ilike.' + encodeURIComponent(email), {
+                    headers: {
+                        'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pZ2ZyZWJmcGtlb3JlYWFpcXp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA2NjIzMDYsImV4cCI6MjA3NjIzODMwNn0.-_jcUhUeifEACMHl2SAErb7lAfzOVHzD7QGtAxFsgQk',
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5pZ2ZyZWJmcGtlb3JlYWFpcXp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA2NjIzMDYsImV4cCI6MjA3NjIzODMwNn0.-_jcUhUeifEACMHl2SAErb7lAfzOVHzD7QGtAxFsgQk'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data && data.length > 0) {
+                        return { success: true, user: data[0] };
+                    } else {
+                        return { success: false, error: 'Utilisateur non trouvé' };
+                    }
+                } else {
+                    return { success: false, error: `Erreur ${response.status}` };
+                }
+            } catch (error) {
+                return { success: false, error: error.message };
+            }
+        }
+
+        async function testAllUsers() {
+            clearResults();
+            addResult('🔄 Test de tous les utilisateurs en cours...', 'info');
+            
+            let successCount = 0;
+            let errorCount = 0;
+
+            for (const user of users) {
+                const result = await testUserLogin(user.email);
+                if (result.success) {
+                    addResult(`✅ ${user.name} (${user.email}) - ${result.user.role}`, 'success');
+                    successCount++;
+                } else {
+                    addResult(`❌ ${user.name} (${user.email}) - ${result.error}`, 'error');
+                    errorCount++;
+                }
+            }
+
+            addResult(`<br><strong>📊 Résumé: ${successCount} succès, ${errorCount} erreurs sur ${users.length} utilisateurs</strong>`, successCount === users.length ? 'success' : 'error');
+        }
+
+        async function testRandomUser() {
+            clearResults();
+            const randomUser = users[Math.floor(Math.random() * users.length)];
+            addResult(`🎲 Test de l'utilisateur aléatoire: ${randomUser.name}`, 'info');
+            
+            const result = await testUserLogin(randomUser.email);
+            if (result.success) {
+                addResult(`✅ Connexion réussie: ${result.user.first_name} ${result.user.last_name} (${result.user.role})`, 'success');
+            } else {
+                addResult(`❌ Échec: ${result.error}`, 'error');
+            }
+        }
+
+        // Afficher les utilisateurs au chargement
+        displayUsers();
+    </script>
+</body>
+</html>

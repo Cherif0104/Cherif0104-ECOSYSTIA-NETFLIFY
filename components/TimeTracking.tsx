@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
+import Avatar from './common/Avatar';
 import { useLocalization } from '../contexts/LocalizationContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { TimeLog, Project, Course, Meeting, User } from '../types';
 import LogTimeModal from './LogTimeModal';
 import ConfirmationModal from './common/ConfirmationModal';
@@ -128,7 +129,7 @@ const MeetingDetailModal: React.FC<{
                         <div className="flex flex-wrap gap-2">
                             {meeting.attendees.map(a => (
                                 <div key={a.id} className="flex items-center space-x-2 bg-gray-100 p-1 rounded-full">
-                                    <img src={a.avatar} alt={a.name} className="w-6 h-6 rounded-full" />
+                                    <Avatar user={a} size="md" className="w-6 h-6 rounded-full" />
                                     <span className="text-sm pr-2">{a.name}</span>
                                 </div>
                             ))}

@@ -4,7 +4,7 @@
 import React from 'react';
 import { useLocalization } from '../contexts/LocalizationContext';
 import NexusFlowIcon from './icons/NexusFlowIcon';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { Role } from '../types';
 
 interface SidebarProps {
@@ -76,7 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentView, setView, isOpen }) => {
     <aside className={`fixed lg:relative inset-y-0 left-0 bg-gray-800 text-white w-64 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0 transition-transform duration-300 ease-in-out z-50 flex flex-col`}>
       <div className="flex items-center justify-center h-20 border-b border-gray-700 px-4">
         <NexusFlowIcon className="h-10 w-auto" />
-        <h1 className="text-xl font-bold ml-2">{t('senegel_workflow_platform')}</h1>
+        <h1 className="text-xl font-bold ml-2">Ecosystia</h1>
       </div>
       <nav className="flex-grow px-4 py-6 space-y-2 overflow-y-auto">
         <p className="px-4 pt-4 pb-2 text-xs uppercase text-gray-400">Workspace</p>

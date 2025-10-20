@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
+import Avatar from './common/Avatar';
 import { useLocalization } from '../contexts/LocalizationContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { Project, Task, User, Risk, TimeLog, Course } from '../types';
 import { enhanceProjectTasks, identifyRisks, generateStatusReport, summarizeTasks } from '../services/geminiService';
 import LogTimeModal from './LogTimeModal';
 import ConfirmationModal from './common/ConfirmationModal';
+import UserMultiSelect from './common/UserMultiSelect';
 
 const statusStyles = {
     'Not Started': 'bg-gray-200 text-gray-800',
@@ -306,7 +308,7 @@ const ProjectDetailModal: React.FC<{
                         className="flex items-center space-x-2 cursor-pointer p-1 rounded-md hover:bg-gray-200"
                     >
                         {task.assignee ? (
-                            <img src={task.assignee.avatar} alt={task.assignee.name} className="w-6 h-6 rounded-full flex-shrink-0" />
+                            <Avatar user={task.assignee} size="md" className="w-6 h-6 rounded-full flex-shrink-0" />
                         ) : (
                             <div className="w-6 h-6 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 flex-shrink-0">
                                 <i className="fas fa-user-plus text-xs"></i>
@@ -350,7 +352,7 @@ const ProjectDetailModal: React.FC<{
                                         }}
                                         className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-3"
                                     >
-                                        <img src={member.avatar} alt={member.name} className="w-6 h-6 rounded-full" />
+                                        <Avatar user={member} size="md" className="w-6 h-6 rounded-full" />
                                         <span className="truncate">{member.name}</span>
                                     </button>
                                 ))}
@@ -415,7 +417,7 @@ const ProjectDetailModal: React.FC<{
                                         <div className="relative">
                                             <button type="button" onClick={() => setNewTaskAssigneeMenuOpen(!isNewTaskAssigneeMenuOpen)} className="flex items-center space-x-2 cursor-pointer p-2 border rounded-md hover:bg-gray-100 bg-white">
                                                 {selectedNewTaskAssignee ? (
-                                                    <img src={selectedNewTaskAssignee.avatar} alt={selectedNewTaskAssignee.name} className="w-5 h-5 rounded-full flex-shrink-0" />
+                                                    <Avatar user={selectedNewTaskAssignee} size="md" className="w-5 h-5 rounded-full flex-shrink-0" />
                                                 ) : (
                                                     <div className="w-5 h-5 rounded-full bg-gray-300 flex items-center justify-center text-gray-600 flex-shrink-0">
                                                         <i className="fas fa-user-plus text-xs"></i>
@@ -434,7 +436,7 @@ const ProjectDetailModal: React.FC<{
                                                         </button>
                                                         {filteredNewTaskTeam.map(member => (
                                                             <button key={member.id} type="button" onClick={() => { setNewTaskAssigneeId(member.id); setNewTaskAssigneeMenuOpen(false); }} className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center space-x-3">
-                                                                <img src={member.avatar} alt={member.name} className="w-6 h-6 rounded-full" /><span className="truncate">{member.name}</span>
+                                                                <Avatar user={member} size="md" className="w-6 h-6 rounded-full" /><span className="truncate">{member.name}</span>
                                                             </button>
                                                         ))}
                                                     </div>
@@ -491,7 +493,7 @@ const ProjectDetailModal: React.FC<{
                             <div className="space-y-3">
                                 {currentProject.team.map(member => (
                                     <div key={member.id} className="flex items-center space-x-3">
-                                        <img src={member.avatar} alt={member.name} className="w-8 h-8 rounded-full" />
+                                        <Avatar user={member} size="md" className="w-8 h-8 rounded-full" />
                                         <div>
                                             <p className="font-semibold text-sm">{member.name}</p>
                                             <p className="text-xs text-gray-500 capitalize">{t(member.role)}</p>
@@ -621,7 +623,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects, users, timeLogs, onUpdate
                     {teamWorkload.map(({ user, taskCount, totalHours }) => (
                         <div key={user.id} className="bg-white p-4 rounded-lg shadow-md flex-shrink-0 w-64">
                             <div className="flex items-center space-x-3">
-                                <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-full" />
+                                <Avatar user={user} size="md" className="w-10 h-10 rounded-full" />
                                 <div>
                                     <p className="font-bold text-sm">{user.name}</p>
                                     <p className="text-xs text-gray-500 capitalize">{t(user.role)}</p>

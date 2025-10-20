@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { useLocalization } from '../contexts/LocalizationContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { Invoice, Expense, Receipt, RecurringInvoice, RecurringExpense, RecurrenceFrequency, Budget, Project, BudgetLine, BudgetItem } from '../types';
 import ConfirmationModal from './common/ConfirmationModal';
 
@@ -117,12 +117,18 @@ const InvoiceFormModal: React.FC<{
             const dataToSave = {
                 ...formData,
                 amount: Number(formData.amount),
-                paidAmount: formData.status === 'Partially Paid' ? Number(formData.paidAmount) : undefined,
+                paidAmount: formData.paidAmount ? Number(formData.paidAmount) : undefined,
+                paidDate: isNowPaid ? new Date().toISOString().split('T')[0] : undefined,
                 receipt: receipt || undefined,
-                paidDate: isNowPaid ? new Date().toISOString().split('T')[0] : (invoice?.paidDate || undefined),
             };
-            onSave(isEditMode ? { ...invoice, ...dataToSave } as Invoice : dataToSave as Omit<Invoice, 'id'>);
+            
+            if (isEditMode && invoice) {
+                onSave({ ...invoice, ...dataToSave });
+            } else {
+                onSave(dataToSave);
+            }
         }
+        onClose();
     };
 
     return (
@@ -288,19 +294,21 @@ const ExpenseFormModal: React.FC<{
                 frequency: recurringData.frequency,
                 startDate: recurringData.startDate,
                 endDate: recurringData.endDate || undefined,
-                lastGeneratedDate: new Date(recurringData.startDate).toISOString().split('T')[0],
             });
         } else {
             const dataToSave = {
                 ...formData,
                 amount: Number(formData.amount),
-                status: formData.status as 'Unpaid' | 'Paid',
-                dueDate: formData.dueDate || undefined,
-                budgetItemId: formData.budgetItemId || undefined,
                 receipt: receipt || undefined,
             };
-            onSave(isEditMode ? { ...expense, ...dataToSave } : dataToSave);
+            
+            if (isEditMode && expense) {
+                onSave({ ...expense, ...dataToSave });
+            } else {
+                onSave(dataToSave);
+            }
         }
+        onClose();
     };
 
     return (

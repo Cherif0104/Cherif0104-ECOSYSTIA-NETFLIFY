@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocalization } from '../../contexts/LocalizationContext';
 
 interface ConfirmationModalProps {
+  isOpen?: boolean;
   title: string;
   message: string;
   onConfirm: () => void;
@@ -12,6 +13,7 @@ interface ConfirmationModalProps {
 }
 
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
+  isOpen = true,
   title,
   message,
   onConfirm,
@@ -21,6 +23,8 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   confirmButtonClass = 'bg-red-600 hover:bg-red-700',
 }) => {
   const { t } = useLocalization();
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[70] p-4">

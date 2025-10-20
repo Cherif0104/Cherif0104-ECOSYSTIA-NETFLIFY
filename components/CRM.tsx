@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Avatar from './common/Avatar';
 import { useLocalization } from '../contexts/LocalizationContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { Contact } from '../types';
 import { draftSalesEmail } from '../services/geminiService';
 import ConfirmationModal from './common/ConfirmationModal';
@@ -253,7 +254,7 @@ const CRM: React.FC<CRMProps> = ({ contacts, onAddContact, onUpdateContact, onDe
                                 {contacts.map(contact => (
                                     <tr key={contact.id} className="bg-white border-b hover:bg-gray-50">
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap flex items-center">
-                                            <img src={contact.avatar} alt={contact.name} className="w-8 h-8 rounded-full mr-3"/>
+                                            <Avatar user={contact} size="md" className="w-8 h-8 rounded-full mr-3"/>
                                             {contact.name}
                                         </th>
                                         <td className="px-6 py-4">{contact.company}</td>

@@ -1,79 +1,88 @@
-import React, { useEffect, useState } from 'react';
-import { Toast as ToastType } from '../../types';
+/**
+ * 🍞 TOAST COMPONENT - FEEDBACK VISUEL
+ * Composant réutilisable pour afficher des messages de succès/erreur
+ */
+
+import React, { useEffect } from 'react';
+import { CheckCircleIcon, ExclamationCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
 interface ToastProps {
-  toast: ToastType;
-  onDismiss: (id: number) => void;
+  message: string;
+  type: 'success' | 'error' | 'warning' | 'info';
+  isVisible: boolean;
+  onClose: () => void;
+  duration?: number; // Durée d'affichage en ms (défaut: 3000)
 }
 
-const Toast: React.FC<ToastProps> = ({ toast, onDismiss }) => {
-  const [isFadingOut, setIsFadingOut] = useState(false);
-
+const Toast: React.FC<ToastProps> = ({ 
+  message, 
+  type, 
+  isVisible, 
+  onClose, 
+  duration = 3000 
+}) => {
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsFadingOut(true);
-      setTimeout(() => onDismiss(toast.id), 300); // Wait for fade-out animation
-    }, 4000);
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, duration);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, duration, onClose]);
 
-    return () => clearTimeout(timer);
-  }, [toast.id, onDismiss]);
+  if (!isVisible) return null;
 
-  const handleDismiss = () => {
-    setIsFadingOut(true);
-    setTimeout(() => onDismiss(toast.id), 300);
+  const getToastStyles = () => {
+    switch (type) {
+      case 'success':
+        return 'bg-green-50 border-green-200 text-green-800';
+      case 'error':
+        return 'bg-red-50 border-red-200 text-red-800';
+      case 'warning':
+        return 'bg-yellow-50 border-yellow-200 text-yellow-800';
+      case 'info':
+        return 'bg-blue-50 border-blue-200 text-blue-800';
+      default:
+        return 'bg-gray-50 border-gray-200 text-gray-800';
+    }
   };
 
-  const icons = {
-    success: 'fas fa-check-circle',
-    error: 'fas fa-exclamation-circle',
-    info: 'fas fa-info-circle',
-  };
-
-  const colors = {
-    success: 'bg-emerald-500',
-    error: 'bg-red-500',
-    info: 'bg-blue-500',
+  const getIcon = () => {
+    switch (type) {
+      case 'success':
+        return <CheckCircleIcon className="h-5 w-5 text-green-600" />;
+      case 'error':
+        return <ExclamationCircleIcon className="h-5 w-5 text-red-600" />;
+      case 'warning':
+        return <ExclamationCircleIcon className="h-5 w-5 text-yellow-600" />;
+      case 'info':
+        return <ExclamationCircleIcon className="h-5 w-5 text-blue-600" />;
+      default:
+        return <ExclamationCircleIcon className="h-5 w-5 text-gray-600" />;
+    }
   };
 
   return (
-    <div
-      className={`flex items-center p-4 mb-4 text-white rounded-lg shadow-lg transition-all duration-300 ease-in-out transform ${colors[toast.type]} ${isFadingOut ? 'opacity-0 translate-x-full' : 'opacity-100 translate-x-0'}`}
-      role="alert"
-    >
-      <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
-        <i className={icons[toast.type]}></i>
+    <div className={`fixed top-4 right-4 z-50 max-w-sm w-full ${getToastStyles()} border rounded-lg shadow-lg p-4 transform transition-all duration-300 ease-in-out`}>
+      <div className="flex items-start">
+        <div className="flex-shrink-0 mr-3">
+          {getIcon()}
+        </div>
+        <div className="flex-1">
+          <p className="text-sm font-medium">{message}</p>
+        </div>
+        <div className="flex-shrink-0 ml-3">
+          <button
+            onClick={onClose}
+            className="inline-flex text-gray-400 hover:text-gray-600 focus:outline-none focus:text-gray-600 transition-colors"
+          >
+            <XMarkIcon className="h-4 w-4" />
+          </button>
+        </div>
       </div>
-      <div className="ml-3 text-sm font-medium">{toast.message}</div>
-      <button
-        type="button"
-        className="ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8"
-        onClick={handleDismiss}
-        aria-label="Close"
-      >
-        <span className="sr-only">Close</span>
-        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path
-            fillRule="evenodd"
-            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          ></path>
-        </svg>
-      </button>
     </div>
   );
 };
 
-interface ToastContainerProps {
-  toasts: ToastType[];
-  onDismiss: (id: number) => void;
-}
-
-export const ToastContainer: React.FC<ToastContainerProps> = ({ toasts, onDismiss }) => {
-  return (
-    <div className="fixed top-20 right-6 w-full max-w-xs z-[100]">
-      {toasts.map((toast) => (
-        <Toast key={toast.id} toast={toast} onDismiss={onDismiss} />
-      ))}
-    </div>
-  );
-};
+export default Toast;

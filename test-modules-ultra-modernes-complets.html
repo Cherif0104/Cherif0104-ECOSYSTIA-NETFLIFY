@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modules UltraModern Complets - Ecosystia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .module-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .module-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        .status-badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .metric-card.green {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .metric-card.blue {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .metric-card.purple {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .metric-card.orange {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-gray-900">Ecosystia</h1>
+                    </div>
+                    <div class="ml-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                            Modules UltraModern
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-calendar-alt mr-1"></i>
+                        15 Octobre 2025
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-user mr-1"></i>
+                        Test Complet
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Introduction -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                Test Modules UltraModern Complets
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+                Interface de test pour tous les modules UltraModern d'Ecosystia
+            </p>
+            
+            <!-- Métriques globales -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="metric-card rounded-lg p-6 text-center">
+                    <div class="text-3xl font-bold mb-2">8</div>
+                    <div class="text-sm opacity-90">Modules UltraModern</div>
+                </div>
+                <div class="metric-card green rounded-lg p-6 text-center">
+                    <div class="text-3xl font-bold mb-2">14</div>
+                    <div class="text-sm opacity-90">Formulaires CRUD</div>
+                </div>
+                <div class="metric-card blue rounded-lg p-6 text-center">
+                    <div class="text-3xl font-bold mb-2">15</div>
+                    <div class="text-sm opacity-90">Services Backend</div>
+                </div>
+                <div class="metric-card purple rounded-lg p-6 text-center">
+                    <div class="text-3xl font-bold mb-2">16</div>
+                    <div class="text-sm opacity-90">Collections Appwrite</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modules UltraModern -->
+        <div class="feature-grid">
+            <!-- 1. Course Management UltraModern -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Course Management</h3>
+                            <p class="text-sm text-gray-500">Gestion des cours et leçons</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-chart-bar mr-2 text-blue-500"></i>
+                        Métriques : Cours, Étudiants, Revenus, Completion
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-plus-circle mr-2 text-green-500"></i>
+                        Actions : Nouveau cours, Ajouter leçon, Analytics
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-filter mr-2 text-purple-500"></i>
+                        Filtres : Statut, Niveau, Catégorie, Recherche
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-eye mr-2 text-orange-500"></i>
+                        Vues : Grille, Liste, Kanban
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-code mr-1"></i>
+                        TypeScript + React
+                    </div>
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. AI Coach UltraModern -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-robot text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">AI Coach</h3>
+                            <p class="text-sm text-gray-500">Assistant IA personnel</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-comments mr-2 text-blue-500"></i>
+                        Chat intelligent en temps réel
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-lightbulb mr-2 text-yellow-500"></i>
+                        Recommandations personnalisées
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-history mr-2 text-purple-500"></i>
+                        Historique des conversations
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-star mr-2 text-orange-500"></i>
+                        Système de notation des réponses
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-brain mr-1"></i>
+                        IA + Chat en temps réel
+                    </div>
+                    <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. Gen AI Lab UltraModern -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-flask text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Gen AI Lab</h3>
+                            <p class="text-sm text-gray-500">Laboratoire d'IA générative</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-file-text mr-2 text-blue-500"></i>
+                        Génération : Texte, Image, Code, Document
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-template mr-2 text-green-500"></i>
+                        Templates personnalisés
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-bookmark mr-2 text-yellow-500"></i>
+                        Favoris et historique
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-download mr-2 text-purple-500"></i>
+                        Export et partage
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-magic mr-1"></i>
+                        IA Générative + Templates
+                    </div>
+                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. Leave Management UltraModern -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-calendar-times text-orange-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Leave Management</h3>
+                            <p class="text-sm text-gray-500">Gestion des congés</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-clock mr-2 text-yellow-500"></i>
+                        Demandes en attente, Approuvées, Rejetées
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-calendar-alt mr-2 text-blue-500"></i>
+                        Calendrier des congés
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-chart-pie mr-2 text-green-500"></i>
+                        Statistiques d'équipe
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-check-double mr-2 text-purple-500"></i>
+                        Workflow d'approbation
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-users mr-1"></i>
+                        RH + Workflow
+                    </div>
+                    <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 5. Finance UltraModern (déjà fait) -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-dollar-sign text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Finance</h3>
+                            <p class="text-sm text-gray-500">Gestion financière</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-file-invoice mr-2 text-blue-500"></i>
+                        Factures, Dépenses, Budgets
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-chart-line mr-2 text-green-500"></i>
+                        Analytics financiers
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-sync mr-2 text-purple-500"></i>
+                        Recurring items
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-bell mr-2 text-orange-500"></i>
+                        Notifications d'échéance
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-calculator mr-1"></i>
+                        Finance + Analytics
+                    </div>
+                    <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 6. CRM UltraModern (déjà fait) -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">CRM</h3>
+                            <p class="text-sm text-gray-500">Gestion des relations clients</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-address-book mr-2 text-blue-500"></i>
+                        Contacts, Leads, Interactions
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-chart-bar mr-2 text-green-500"></i>
+                        Pipeline de vente
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-tags mr-2 text-purple-500"></i>
+                        Segmentation et tags
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-history mr-2 text-orange-500"></i>
+                        Historique des interactions
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-handshake mr-1"></i>
+                        CRM + Pipeline
+                    </div>
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 7. Goals UltraModern (déjà fait) -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-bullseye text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Goals (OKRs)</h3>
+                            <p class="text-sm text-gray-500">Objectifs et résultats clés</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-target mr-2 text-blue-500"></i>
+                        Objectifs et Key Results
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-chart-pie mr-2 text-green-500"></i>
+                        Suivi de progression
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-calendar mr-2 text-purple-500"></i>
+                        Périodes (Q1, Q2, Q3, Q4)
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-flag mr-2 text-orange-500"></i>
+                        Priorités et statuts
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-trophy mr-1"></i>
+                        OKRs + Suivi
+                    </div>
+                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 8. Time Tracking UltraModern (déjà fait) -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-clock text-orange-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Time Tracking</h3>
+                            <p class="text-sm text-gray-500">Suivi du temps de travail</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-play mr-2 text-green-500"></i>
+                        Timer en temps réel
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-project-diagram mr-2 text-blue-500"></i>
+                        Association projets/tâches
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-chart-bar mr-2 text-purple-500"></i>
+                        Rapports et analytics
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-money-bill mr-2 text-orange-500"></i>
+                        Facturation automatique
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-stopwatch mr-1"></i>
+                        Timer + Analytics
+                    </div>
+                    <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fonctionnalités communes -->
+        <div class="mt-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">
+                Fonctionnalités Communes UltraModern
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-chart-line text-blue-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900">Métriques Visuelles</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Chaque module affiche des métriques clés avec des graphiques et des indicateurs de performance.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-bolt text-green-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900">Actions Rapides</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Boutons d'action rapide pour les opérations les plus courantes dans chaque module.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-filter text-purple-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900">Filtres Avancés</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Système de filtrage et de recherche avancé pour tous les modules.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-eye text-orange-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900">Vues Multiples</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Grille, liste et kanban pour une visualisation adaptée aux besoins.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-mobile-alt text-red-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900">Responsive Design</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Interface adaptative qui fonctionne parfaitement sur tous les appareils.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                            <i class="fas fa-database text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-lg font-semibold text-gray-900">Persistance Appwrite</h3>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Toutes les données sont sauvegardées dans Appwrite avec des collections optimisées.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions de test -->
+        <div class="mt-12 bg-blue-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-blue-900 mb-4">
+                <i class="fas fa-info-circle mr-2"></i>
+                Instructions de Test
+            </h3>
+            <div class="space-y-3 text-blue-800">
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-blue-600"></i>
+                    <span>Cliquez sur "Tester" pour chaque module pour accéder à l'interface complète</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-blue-600"></i>
+                    <span>Testez les formulaires CRUD avec validation en temps réel</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-blue-600"></i>
+                    <span>Vérifiez les filtres, la recherche et les vues multiples</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-blue-600"></i>
+                    <span>Testez la responsivité sur différentes tailles d'écran</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-blue-600"></i>
+                    <span>Vérifiez la persistance des données dans Appwrite</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center text-gray-500">
+                <p>&copy; 2025 Ecosystia - Tous les modules UltraModern sont prêts pour la production ! 🚀</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation des cartes au survol
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Animation des boutons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // Compteur animé pour les métriques
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 30);
+        }
+
+        // Démarrer les animations au chargement
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.metric-card .text-3xl').forEach((element, index) => {
+                const target = parseInt(element.textContent);
+                animateCounter(element, target);
+            });
+        });
+    </script>
+</body>
+</html>

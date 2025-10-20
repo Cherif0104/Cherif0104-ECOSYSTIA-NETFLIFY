@@ -1,13 +1,13 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 import { Project, Task, User, Contact } from '../types';
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 if (!API_KEY) {
-  console.warn("Gemini API key not found. Please set the API_KEY environment variable.");
+  console.warn("Gemini API key not found. Please set VITE_GEMINI_API_KEY in your .env file. Get your key from: https://aistudio.google.com/app/apikey");
 }
 
-const ai = new GoogleGenAI({ apiKey: API_KEY! });
+const ai = API_KEY ? new GoogleGenAI({ apiKey: API_KEY }) : null;
 
 // --- Existing Functions ---
 
@@ -23,6 +23,7 @@ export const runAICoach = async (prompt: string): Promise<string> => {
   }
 
   try {
+    if (!ai) throw new Error("API not initialized");
     const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
         contents: prompt,
@@ -44,6 +45,7 @@ export const generateImage = async (prompt: string): Promise<string> => {
     }
 
     try {
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateImages({
             model: 'imagen-4.0-generate-001',
             prompt: prompt,
@@ -69,6 +71,7 @@ export const editImage = async (base64Image: string, mimeType: string, prompt: s
         };
     }
     try {
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash-image-preview',
             contents: {
@@ -138,6 +141,7 @@ export const enhanceProjectTasks = async (projectDescription: string, team: User
         Project Description: "${projectDescription}"
         Team: [${teamInfo}]`;
 
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -163,6 +167,7 @@ export const summarizeTasks = async (tasks: Task[]): Promise<string> => {
         const taskText = tasks.map(t => `- ${t.text} (Status: ${t.status})`).join('\n');
         const prompt = `Please provide a brief summary of the following list of project tasks. Highlight key themes, overall progress, and any potential areas of focus.\n\n${taskText}`;
 
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -189,6 +194,7 @@ export const identifyRisks = async (projectDescription: string): Promise<any[]> 
     try {
         const prompt = `For the following project, identify potential risks. For each risk, provide a description, likelihood ('Low', 'Medium', 'High'), impact ('Low', 'Medium', 'High'), and a suggested mitigation strategy.
         Project: "${projectDescription}"`;
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -220,6 +226,7 @@ export const generateOKRs = async (projectDescription: string): Promise<any[]> =
      try {
         const prompt = `Generate a set of 1-2 strategic objectives with 2-3 key results (OKRs) for the following project.
         Project: "${projectDescription}"`;
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -256,6 +263,7 @@ ${user.name}`;
     }
     try {
         const prompt = `Draft a professional and concise introductory sales email from ${user.name}, a ${user.role} at SENEGEL WorkFlow, to ${contact.name} at ${contact.company}. The goal is to initiate a conversation about a potential partnership.`;
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -278,6 +286,7 @@ export const summarizeAndCreateDoc = async (text: string): Promise<{ title: stri
     try {
         const prompt = `Analyze the following text. Generate a concise title and a summary of the key points and action items.
         Text: "${text}"`;
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -315,6 +324,7 @@ export const generateStatusReport = async (project: Project): Promise<string> =>
         Overall Status: ${project.status}
         Tasks (${completedTasks}/${totalTasks} completed):
         ${taskSummary}`;
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -384,6 +394,7 @@ export const runAIAgent = async (prompt: string, context: string): Promise<strin
     }
     
     try {
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,
@@ -407,6 +418,7 @@ export const runAuthAIAssistant = async (prompt: string): Promise<string> => {
     }
 
     try {
+        if (!ai) throw new Error("API not initialized");
         const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
             contents: prompt,

@@ -8,9 +8,10 @@ import { Course, Job, Project, Objective, Contact, Document, User, Role, TimeLog
 import { generateProjectId, generateUserId, generateCourseId, generateContactId, generateInvoiceId, generateExpenseId, generateBudgetId, generateMeetingId, generateLeaveRequestId, generateTimeLogId, generateRecurringInvoiceId, generateRecurringExpenseId, generateInvoiceNumber } from './utils/idGenerator';
 import { useLocalization } from './contexts/LocalizationContext';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
-import { NotificationProvider, useNotification } from './components/common/Notification';
 import LoadingScreen from './components/common/LoadingScreen';
 import { useErrorHandler } from './utils/errorHandling';
+import { useFeedback } from './hooks/useFeedback';
+import Toast from './components/common/Toast';
 
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -20,21 +21,57 @@ import SessionIndicator from './components/SessionIndicator';
 import AccessibilityButton from './components/AccessibilityButton';
 import Dashboard from './components/Dashboard';
 import DashboardUltraModernV2 from './components/DashboardUltraModernV2';
-import CourseDetail from './components/CourseDetail';
-import CourseManagementUltraModernV3 from './components/CourseManagementUltraModernV3';
-import TalentAnalytics from './components/TalentAnalytics';
-import AIAgent from './components/AIAgent';
+import Courses from './components/Courses';
+import Jobs from './components/Jobs';
+import AICoach from './components/AICoach';
+import Settings from './components/Settings';
+import Projects from './components/Projects';
+import ProjectsModern from './components/ProjectsModern';
 import ProjectsUltraModernV2 from './components/ProjectsUltraModernV2';
+import TimeTrackingModern from './components/TimeTrackingModern';
+import GenAILab from './components/GenAILab';
+import CourseDetail from './components/CourseDetail';
+import CourseManagement from './components/CourseManagement';
+import Analytics from './components/Analytics';
+import TalentAnalytics from './components/TalentAnalytics';
+import Goals from './components/Goals';
+import CRM from './components/CRM';
+import KnowledgeBase from './components/KnowledgeBase';
+import CreateJob from './components/CreateJob';
+import UserManagement from './components/UserManagement';
+import AIAgent from './components/AIAgent';
+import TimeTracking from './components/TimeTracking';
+import LeaveManagement from './components/LeaveManagement';
+import LeaveManagementModern from './components/LeaveManagementModern';
+import Finance from './components/Finance';
+import FinanceUltraModern from './components/FinanceUltraModern';
+import TimeTrackingUltraModern from './components/TimeTrackingUltraModern';
+import TimeTrackingUltraModernV2 from './components/TimeTrackingUltraModernV2';
 import TimeTrackingUltraModernV3 from './components/TimeTrackingUltraModernV3';
+import GoalsUltraModern from './components/GoalsUltraModern';
 import GoalsUltraModernV3 from './components/GoalsUltraModernV3';
-import KnowledgeBaseUltraModernV3Standard from './components/KnowledgeBaseUltraModernV3Standard';
-import LeaveManagementUltraModernV3Standard from './components/LeaveManagementUltraModernV3Standard';
-import FinanceUltraModernV3Standard from './components/FinanceUltraModernV3Standard';
+import CoursesUltraModern from './components/CoursesUltraModern';
+import JobsUltraModern from './components/JobsUltraModern';
+import KnowledgeBaseUltraModern from './components/KnowledgeBaseUltraModern';
+import CourseManagementUltraModernV3 from './components/CourseManagementUltraModernV3';
 import AICoachUltraModernV3 from './components/AICoachUltraModernV3';
 import GenAILabUltraModernV3 from './components/GenAILabUltraModernV3';
+import LeaveManagementUltraModern from './components/LeaveManagementUltraModern';
+import LeaveManagementUltraModernV4 from './components/LeaveManagementUltraModernV4';
+import LeaveManagementUltraModernV3Standard from './components/LeaveManagementUltraModernV3Standard';
+// Nouveaux modules UltraModern V2
+import FinanceUltraModernV2 from './components/FinanceUltraModernV2';
+import FinanceUltraModernV4 from './components/FinanceUltraModernV4';
+import FinanceUltraModernV3Standard from './components/FinanceUltraModernV3Standard';
+import KnowledgeBaseUltraModernV2 from './components/KnowledgeBaseUltraModernV2';
+import KnowledgeBaseUltraModernV3 from './components/KnowledgeBaseUltraModernV3';
+import KnowledgeBaseUltraModernV3Standard from './components/KnowledgeBaseUltraModernV3Standard';
 import DevelopmentUltraModernV3 from './components/DevelopmentUltraModernV3';
+import CoursesUltraModernV3 from './components/CoursesUltraModernV3';
 import CoursesUltraModernV3Standard from './components/CoursesUltraModernV3Standard';
+import JobsUltraModernV3 from './components/JobsUltraModernV3';
 import JobsUltraModernV3Standard from './components/JobsUltraModernV3Standard';
+// Nouveaux modules UltraModern V2
 import CRMSalesUltraModernV3 from './components/CRMSalesUltraModernV3';
 import AnalyticsUltraModern from './components/AnalyticsUltraModern';
 import UserManagementUltraModernV2 from './components/UserManagementUltraModernV2';
@@ -45,7 +82,14 @@ const App: React.FC = () => {
   const { user, login, isLoading } = useAuth();
   const { currentPage, navigateTo, getDisplayPage, isLoadingPage } = useNavigation();
   const { t } = useLocalization();
-  const { addToast } = useNotification();
+  const { 
+    isSubmitting, 
+    submitSuccess, 
+    submitError, 
+    setSubmitting, 
+    setSuccess, 
+    setError 
+  } = useFeedback();
   const [authView, setAuthView] = useState<'login' | 'signup'>('login');
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   
@@ -396,20 +440,14 @@ const App: React.FC = () => {
                   setProjects(prev => [savedProject, ...prev]);
                   
                   // Notification de succès
-                  addToast({
-                      message: `Projet "${savedProject.title}" créé avec succès ! 🎉`,
-                      type: 'success'
-                  });
+                  setSuccess(`Projet "${savedProject.title}" créé avec succès ! 🎉`);
                   
                   console.log('✅ Projet sauvegardé dans Supabase');
                   return;
               }
           } catch (error) {
               // Notification d'erreur
-              addToast({
-                  message: `Erreur lors de la création du projet : ${error instanceof Error ? error.message : 'Erreur inconnue'}`,
-                  type: 'error'
-              });
+              setError(`Erreur lors de la création du projet : ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
               throw error;
           }
       }
@@ -426,10 +464,7 @@ const App: React.FC = () => {
       setProjects(prev => [newProject, ...prev]);
       
       // Notification pour mode hors ligne
-      addToast({
-          message: 'Projet créé (mode hors ligne)',
-          type: 'info'
-      });
+      setSuccess('Projet créé (mode hors ligne)');
   };
   
   const handleUpdateProject = async (updatedProject: Project) => {
@@ -442,20 +477,14 @@ const App: React.FC = () => {
                   setProjects(prev => prev.map(p => p.id === updatedProject.id ? updatedProject : p));
                   
                   // Notification de succès
-                  addToast({
-                      message: `Projet "${updatedProject.title}" mis à jour avec succès ! ✅`,
-                      type: 'success'
-                  });
+                  setSuccess(`Projet "${updatedProject.title}" mis à jour avec succès ! ✅`);
                   
                   console.log('✅ Projet mis à jour dans Supabase');
                   return;
               }
           } catch (error) {
               // Notification d'erreur
-              addToast({
-                  message: `Erreur lors de la mise à jour : ${error instanceof Error ? error.message : 'Erreur inconnue'}`,
-                  type: 'error'
-              });
+              setError(`Erreur lors de la mise à jour : ${error instanceof Error ? error.message : 'Erreur inconnue'}`);
               throw error;
           }
       }
@@ -463,10 +492,7 @@ const App: React.FC = () => {
       // Fallback vers les données locales
       setProjects(prev => prev.map(p => p.id === updatedProject.id ? updatedProject : p));
       
-      addToast({
-          message: 'Projet mis à jour (mode hors ligne)',
-          type: 'info'
-      });
+      setSuccess('Projet mis à jour (mode hors ligne)');
   };
   
   const handleDeleteProject = async (projectId: number | string) => {
@@ -570,14 +596,14 @@ const App: React.FC = () => {
         case 'goals_okrs':
           return <GoalsUltraModernV3 />;
       case 'courses_old':
-        return <CoursesUltraModernV3Standard />;
+        return <CoursesUltraModern />;
       case 'course_detail':
         const course = courses.find(c => c.id === selectedCourseId);
         return course ? <CourseDetail course={course} onBack={() => handleSetView('courses')} timeLogs={timeLogs} onAddTimeLog={handleAddTimeLog} projects={projects} onUpdateCourse={handleUpdateCourse} /> : <Courses courses={courses} onSelectCourse={handleSelectCourse}/>;
       case 'course_management':
         return <CourseManagementUltraModernV3 />;
       case 'jobs_old':
-        return <JobsUltraModernV3Standard />;
+        return <JobsUltraModern />;
       case 'create_job':
         return <CreateJob onAddJob={handleAddJob} onBack={() => handleSetView('jobs')} />;
       case 'knowledge_base':
@@ -625,10 +651,9 @@ const App: React.FC = () => {
 
   return (
     <ErrorBoundary>
-      <NotificationProvider>
-        <div className="flex h-screen bg-gray-100">
-          <Sidebar currentView={currentPage} setView={handleSetView} isOpen={isSidebarOpen} />
-          <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex h-screen bg-gray-100">
+        <Sidebar currentView={currentPage} setView={handleSetView} isOpen={isSidebarOpen} />
+        <div className="flex-1 flex flex-col overflow-hidden">
             <Header 
                 toggleSidebar={() => setSidebarOpen(!isSidebarOpen)} 
                 setView={handleSetView}
@@ -647,7 +672,17 @@ const App: React.FC = () => {
            <SessionIndicator />
            <AccessibilityButton />
         </div>
-      </NotificationProvider>
+      
+      {/* Toast pour les notifications */}
+      <Toast
+        message={submitSuccess ? "Action effectuée avec succès !" : submitError || ""}
+        type={submitSuccess ? "success" : "error"}
+        isVisible={submitSuccess || !!submitError}
+        onClose={() => {
+          if (submitSuccess) setSuccess();
+          if (submitError) setError("");
+        }}
+      />
     </ErrorBoundary>
   );
 };

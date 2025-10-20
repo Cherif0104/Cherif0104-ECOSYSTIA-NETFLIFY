@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modules Ultra-Modernes - Ecosystia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="gradient-bg text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-4">
+                    <i class="fas fa-rocket mr-3"></i>
+                    Modules Ultra-Modernes Ecosystia
+                </h1>
+                <p class="text-xl text-blue-100">
+                    Interfaces modernes avec CRUD complet et persistance
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="py-4">
+                <div class="flex flex-wrap justify-center space-x-2">
+                    <button onclick="showModule('finance')" class="module-btn active bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-chart-line mr-2"></i>Finance
+                    </button>
+                    <button onclick="showModule('crm')" class="module-btn bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-users mr-2"></i>CRM
+                    </button>
+                    <button onclick="showModule('time')" class="module-btn bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-clock mr-2"></i>Time Tracking
+                    </button>
+                    <button onclick="showModule('goals')" class="module-btn bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors">
+                        <i class="fas fa-bullseye mr-2"></i>Goals & OKRs
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenu principal -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Module Finance -->
+        <div id="finance-module" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">
+                            <i class="fas fa-chart-line text-blue-600 mr-3"></i>
+                            Module Finance Ultra-Moderne
+                        </h2>
+                        <p class="text-gray-600">Gestion financière complète avec métriques en temps réel</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-plus mr-2"></i>Nouvelle Facture
+                        </button>
+                        <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                            <i class="fas fa-minus mr-2"></i>Nouvelle Dépense
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Métriques Finance -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-invoice text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Total Factures</p>
+                                <p class="text-3xl font-bold">2,450,000 FCFA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Factures Payées</p>
+                                <p class="text-3xl font-bold">1,890,000 FCFA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-exclamation-triangle text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-red-100 text-sm">Dépenses</p>
+                                <p class="text-3xl font-bold">450,000 FCFA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Bénéfice Net</p>
+                                <p class="text-3xl font-bold text-green-200">1,440,000 FCFA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fonctionnalités Finance -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-file-invoice text-2xl text-blue-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Gestion Factures</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Création automatique</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi des paiements</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Relances automatiques</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Export PDF</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-receipt text-2xl text-red-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Gestion Dépenses</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Catégorisation</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Justificatifs</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Remboursements</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Rapports détaillés</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-wallet text-2xl text-purple-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Budgets</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Planification</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi en temps réel</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Alertes dépassement</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Analyses prévisionnelles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module CRM -->
+        <div id="crm-module" class="module-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">
+                            <i class="fas fa-users text-green-600 mr-3"></i>
+                            Module CRM Ultra-Moderne
+                        </h2>
+                        <p class="text-gray-600">Gestion des relations clients et leads</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-user-plus mr-2"></i>Nouveau Contact
+                        </button>
+                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            <i class="fas fa-bullseye mr-2"></i>Nouveau Lead
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Métriques CRM -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Total Contacts</p>
+                                <p class="text-3xl font-bold">156</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-user-check text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Contacts Actifs</p>
+                                <p class="text-3xl font-bold">89</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-orange-500 to-orange-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-bullseye text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-orange-100 text-sm">Total Leads</p>
+                                <p class="text-3xl font-bold">34</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-fire text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-red-100 text-sm">Leads Chauds</p>
+                                <p class="text-3xl font-bold">12</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fonctionnalités CRM -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-address-book text-2xl text-blue-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Gestion Contacts</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Base de données complète</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Historique interactions</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Segmentation avancée</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Import/Export</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-bullseye text-2xl text-green-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Gestion Leads</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Qualification automatique</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Pipeline de vente</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Scoring des prospects</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Conversion en clients</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-comments text-2xl text-purple-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Interactions</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi des appels</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Historique emails</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Rendez-vous</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Notes personnalisées</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Time Tracking -->
+        <div id="time-module" class="module-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">
+                            <i class="fas fa-clock text-purple-600 mr-3"></i>
+                            Module Time Tracking Ultra-Moderne
+                        </h2>
+                        <p class="text-gray-600">Suivi du temps et gestion des réunions</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            <i class="fas fa-play mr-2"></i>Démarrer Timer
+                        </button>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-calendar-plus mr-2"></i>Nouvelle Réunion
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Timer en cours -->
+                <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 rounded-lg text-white mb-8">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-green-100 text-sm">Timer en cours</p>
+                            <p class="text-2xl font-bold">Projet Ecosystia - Développement Frontend</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-green-100 text-sm">Durée</p>
+                            <p class="text-3xl font-bold">2h 34m</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Métriques Time Tracking -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Aujourd'hui</p>
+                                <p class="text-3xl font-bold">6h 45m</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-calendar-week text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Cette Semaine</p>
+                                <p class="text-3xl font-bold">32h 15m</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-calendar-alt text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Ce Mois</p>
+                                <p class="text-3xl font-bold">128h 30m</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-orange-500 to-orange-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-orange-100 text-sm">Réunions Aujourd'hui</p>
+                                <p class="text-3xl font-bold">3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fonctionnalités Time Tracking -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-stopwatch text-2xl text-green-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Timer Intelligent</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Démarrage/arrêt automatique</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Pause intelligente</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Notifications</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Historique détaillé</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-calendar text-2xl text-blue-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Gestion Réunions</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Planification</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Invitations automatiques</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Rappels</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Comptes-rendus</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-chart-bar text-2xl text-purple-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Rapports</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Rapports détaillés</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Analyses de productivité</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Export Excel/PDF</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Tableaux de bord</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Goals & OKRs -->
+        <div id="goals-module" class="module-content hidden">
+            <div class="bg-white rounded-lg shadow-sm p-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">
+                            <i class="fas fa-bullseye text-orange-600 mr-3"></i>
+                            Module Goals & OKRs Ultra-Moderne
+                        </h2>
+                        <p class="text-gray-600">Objectifs et résultats clés avec suivi de progression</p>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            <i class="fas fa-bullseye mr-2"></i>Nouvel Objectif
+                        </button>
+                        <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            <i class="fas fa-key mr-2"></i>Nouveau Key Result
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Métriques Goals & OKRs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-bullseye text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Total Objectifs</p>
+                                <p class="text-3xl font-bold">12</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Objectifs Atteints</p>
+                                <p class="text-3xl font-bold">7</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-key text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Key Results</p>
+                                <p class="text-3xl font-bold">28</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-orange-500 to-orange-600 p-6 rounded-lg text-white">
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line text-3xl mr-4"></i>
+                            <div>
+                                <p class="text-orange-100 text-sm">Progrès Moyen</p>
+                                <p class="text-3xl font-bold">73%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemple d'objectif avec progression -->
+                <div class="bg-gray-50 rounded-lg p-6 mb-8">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Exemple d'Objectif avec Key Results</h3>
+                    <div class="bg-white rounded-lg p-4 border border-gray-200">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-lg font-semibold">Améliorer la productivité de l'équipe</h4>
+                            <div class="text-right">
+                                <div class="text-2xl font-bold text-blue-600">68%</div>
+                                <div class="w-24 h-2 bg-gray-200 rounded-full mt-1">
+                                    <div class="w-16 h-2 bg-blue-500 rounded-full"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">Réduire le temps de développement de 20%</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-sm text-gray-500">15/20 jours</span>
+                                    <div class="w-16 h-1 bg-gray-200 rounded-full">
+                                        <div class="w-12 h-1 bg-green-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">Augmenter la satisfaction client à 90%</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-sm text-gray-500">78/90%</span>
+                                    <div class="w-16 h-1 bg-gray-200 rounded-full">
+                                        <div class="w-14 h-1 bg-yellow-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm text-gray-600">Formation de 100% de l'équipe</span>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-sm text-gray-500">6/8 membres</span>
+                                    <div class="w-16 h-1 bg-gray-200 rounded-full">
+                                        <div class="w-12 h-1 bg-orange-500 rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fonctionnalités Goals & OKRs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-bullseye text-2xl text-blue-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Gestion Objectifs</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Création intuitive</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi de progression</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Priorités</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Échéances</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-key text-2xl text-green-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Key Results</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Mesurables</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Objectifs quantifiés</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Mise à jour temps réel</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Alertes automatiques</li>
+                        </ul>
+                    </div>
+
+                    <div class="card-hover bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-chart-pie text-2xl text-purple-600 mr-3"></i>
+                            <h3 class="text-lg font-semibold">Tableaux de Bord</h3>
+                        </div>
+                        <ul class="text-sm text-gray-600 space-y-2">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Vue d'ensemble</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Métriques clés</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Rapports visuels</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Export données</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Résumé des fonctionnalités -->
+        <div class="mt-12 bg-white rounded-lg shadow-sm p-8">
+            <h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">
+                <i class="fas fa-star text-yellow-500 mr-3"></i>
+                Fonctionnalités Communes à Tous les Modules
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-search text-2xl text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Recherche Avancée</h3>
+                    <p class="text-sm text-gray-600">Recherche intelligente avec filtres multiples</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-th text-2xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Vues Multiples</h3>
+                    <p class="text-sm text-gray-600">Grille, Liste et Kanban</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-sort text-2xl text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Tri & Filtres</h3>
+                    <p class="text-sm text-gray-600">Tri par date, montant, statut, priorité</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-mobile-alt text-2xl text-orange-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Responsive</h3>
+                    <p class="text-sm text-gray-600">Interface adaptée à tous les écrans</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showModule(moduleName) {
+            // Masquer tous les modules
+            document.querySelectorAll('.module-content').forEach(module => {
+                module.classList.add('hidden');
+            });
+            
+            // Désactiver tous les boutons
+            document.querySelectorAll('.module-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Afficher le module sélectionné
+            document.getElementById(moduleName + '-module').classList.remove('hidden');
+            
+            // Activer le bouton correspondant
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

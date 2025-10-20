@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Leave Management - Corrections</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px; }
+        .success { background-color: #f0f9ff; border-color: #0ea5e9; }
+        .error { background-color: #fef2f2; border-color: #ef4444; }
+        .warning { background-color: #fffbeb; border-color: #f59e0b; }
+    </style>
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8">🧪 Test Leave Management - Corrections</h1>
+        
+        <div class="test-section success">
+            <h2 class="text-xl font-semibold text-blue-800 mb-4">✅ Corrections Appliquées</h2>
+            <ul class="list-disc list-inside space-y-2 text-blue-700">
+                <li><strong>Service simplifié :</strong> Suppression des jointures complexes qui causaient l'erreur 400</li>
+                <li><strong>Requêtes séparées :</strong> Récupération des types de congé et utilisateurs séparément</li>
+                <li><strong>Mapping correct :</strong> Conversion des données Supabase vers l'interface LeaveRequest</li>
+                <li><strong>Gestion d'erreurs :</strong> Amélioration de la gestion des erreurs dans toutes les méthodes</li>
+            </ul>
+        </div>
+
+        <div class="test-section warning">
+            <h2 class="text-xl font-semibold text-orange-800 mb-4">🔧 Fonctionnalités à Tester</h2>
+            <ul class="list-disc list-inside space-y-2 text-orange-700">
+                <li><strong>Chargement des données :</strong> Vérifier que les demandes de congé se chargent sans erreur 400</li>
+                <li><strong>Formulaire de création :</strong> Tester le bouton "Créer la demande"</li>
+                <li><strong>Vérification d'éligibilité :</strong> Tester la logique d'éligibilité (projets en cours, objectifs <80%)</li>
+                <li><strong>Sélection du manager :</strong> Vérifier le dropdown des managers</li>
+                <li><strong>Demandes manuelles :</strong> Tester la création de demandes manuelles par les managers</li>
+                <li><strong>Validation des demandes :</strong> Tester les boutons Valider/Rejeter</li>
+            </ul>
+        </div>
+
+        <div class="test-section">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">📋 Instructions de Test</h2>
+            <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                <li>Ouvrir l'application sur <a href="http://localhost:5173" class="text-blue-600 hover:underline" target="_blank">http://localhost:5173</a></li>
+                <li>Se connecter avec un compte utilisateur</li>
+                <li>Naviguer vers le module "Leave Management"</li>
+                <li>Vérifier que les données se chargent sans erreur dans la console</li>
+                <li>Cliquer sur "Créer la demande" et remplir le formulaire</li>
+                <li>Tester la création d'une demande</li>
+                <li>Si vous êtes manager/admin, tester la création d'une demande manuelle</li>
+                <li>Si vous êtes manager/admin, tester la validation/rejet d'une demande</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">🐛 Erreurs à Surveiller</h2>
+            <ul class="list-disc list-inside space-y-2 text-gray-700">
+                <li><strong>Erreur 400 :</strong> Ne devrait plus apparaître lors du chargement des données</li>
+                <li><strong>Bouton inactif :</strong> Le bouton "Créer la demande" devrait être fonctionnel</li>
+                <li><strong>Console propre :</strong> Pas d'erreurs JavaScript dans la console</li>
+                <li><strong>Données persistantes :</strong> Les demandes créées doivent être sauvegardées</li>
+            </ul>
+        </div>
+
+        <div class="test-section success">
+            <h2 class="text-xl font-semibold text-green-800 mb-4">🎯 Résultats Attendus</h2>
+            <ul class="list-disc list-inside space-y-2 text-green-700">
+                <li>✅ Chargement des données sans erreur 400</li>
+                <li>✅ Formulaire de création fonctionnel</li>
+                <li>✅ Vérification d'éligibilité opérationnelle</li>
+                <li>✅ Sélection du manager fonctionnelle</li>
+                <li>✅ Demandes manuelles pour managers/admins</li>
+                <li>✅ Validation/rejet des demandes</li>
+                <li>✅ Persistance des données dans Supabase</li>
+            </ul>
+        </div>
+
+        <div class="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <h3 class="font-semibold text-blue-800 mb-2">📝 Notes</h3>
+            <p class="text-blue-700 text-sm">
+                Les corrections ont été appliquées au service Leave Management pour résoudre l'erreur 400. 
+                Le module devrait maintenant fonctionner correctement avec toutes les fonctionnalités demandées.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

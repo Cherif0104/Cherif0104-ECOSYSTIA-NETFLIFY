@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { useLocalization } from '../contexts/LocalizationContext';
 import { Course, Job, Project, TimeLog, LeaveRequest, Invoice, Expense } from '../types';
 

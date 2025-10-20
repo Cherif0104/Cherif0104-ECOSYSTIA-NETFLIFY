@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Module Goals Ultra Modern - ECOSYSTIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .custom-scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #CBD5E0 #F7FAFC;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F7FAFC;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #CBD5E0;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #A0AEC0;
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.3s ease-out;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-md sticky top-0 z-40">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-flag text-white text-sm"></i>
+                            </div>
+                            <h1 class="text-xl font-bold text-gray-900">ECOSYSTIA</h1>
+                        </div>
+                        <div class="hidden md:block">
+                            <span class="text-sm text-gray-500">Module Goals (OKRs) - Ultra Modern</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-blue-600 text-sm"></i>
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">Test User</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Page Header -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900 mb-2">
+                            🎯 Module Goals (OKRs) - Ultra Modern
+                        </h1>
+                        <p class="text-gray-600 text-lg">
+                            Gestion avancée des objectifs et résultats clés avec vues multiples
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Nouvelles fonctionnalités implémentées</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nouvelles Fonctionnalités -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-star text-yellow-500 mr-2"></i>
+                    Nouvelles Fonctionnalités Implémentées
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 rounded-lg p-4 border border-blue-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-th-large text-blue-600 mr-2"></i>
+                            <h3 class="font-semibold text-blue-900">3 Vues d'Affichage</h3>
+                        </div>
+                        <p class="text-sm text-blue-700">
+                            Grille, Liste et Kanban pour une visualisation optimale des objectifs
+                        </p>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-4 border border-green-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-users text-green-600 mr-2"></i>
+                            <h3 class="font-semibold text-green-900">Gestion des Équipes</h3>
+                        </div>
+                        <p class="text-sm text-green-700">
+                            Assignation et gestion des membres d'équipe pour chaque objectif
+                        </p>
+                    </div>
+                    <div class="bg-purple-50 rounded-lg p-4 border border-purple-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-chart-bar text-purple-600 mr-2"></i>
+                            <h3 class="font-semibold text-purple-900">Analytics Avancés</h3>
+                        </div>
+                        <p class="text-sm text-purple-700">
+                            Tableaux de bord détaillés et métriques de performance
+                        </p>
+                    </div>
+                    <div class="bg-orange-50 rounded-lg p-4 border border-orange-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-bell text-orange-600 mr-2"></i>
+                            <h3 class="font-semibold text-orange-900">Notifications</h3>
+                        </div>
+                        <p class="text-sm text-orange-700">
+                            Alertes automatiques pour les assignations d'objectifs
+                        </p>
+                    </div>
+                    <div class="bg-red-50 rounded-lg p-4 border border-red-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-download text-red-600 mr-2"></i>
+                            <h3 class="font-semibold text-red-900">Export de Données</h3>
+                        </div>
+                        <p class="text-sm text-red-700">
+                            Export en PDF et CSV des objectifs et métriques
+                        </p>
+                    </div>
+                    <div class="bg-indigo-50 rounded-lg p-4 border border-indigo-200">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-cogs text-indigo-600 mr-2"></i>
+                            <h3 class="font-semibold text-indigo-900">Actions Rapides</h3>
+                        </div>
+                        <p class="text-sm text-indigo-700">
+                            Boutons d'action contextuels pour chaque objectif
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions Rapides -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-900 mb-4">Actions Rapides</h2>
+                <div class="flex flex-wrap gap-3">
+                    <button class="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-plus mr-2"></i>
+                        Nouvel Objectif
+                    </button>
+                    <button class="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-users mr-2"></i>
+                        Gérer Équipes
+                    </button>
+                    <button class="flex items-center px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-chart-bar mr-2"></i>
+                        Voir Analytics
+                    </button>
+                    <button class="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                        <i class="fas fa-download mr-2"></i>
+                        Exporter Données
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contrôles de Vue -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-8 border border-gray-200">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-semibold text-gray-900">Contrôles de Vue</h2>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center bg-gray-100 rounded-lg p-1">
+                            <button class="p-2 rounded-md bg-white text-blue-600 shadow-sm">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button class="p-2 rounded-md text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-list"></i>
+                            </button>
+                            <button class="p-2 rounded-md text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-table"></i>
+                            </button>
+                        </div>
+                        <select class="px-3 py-1 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option>Titre</option>
+                            <option>Statut</option>
+                            <option>Priorité</option>
+                            <option>Progression</option>
+                            <option>Date de fin</option>
+                        </select>
+                        <button class="p-2 text-gray-400 hover:text-gray-600">
+                            <i class="fas fa-sort-amount-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exemple d'Objectif avec Actions -->
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                <div class="p-6 border-b border-gray-200">
+                    <h2 class="text-lg font-semibold text-gray-900">Exemple d'Objectif avec Actions</h2>
+                </div>
+                <div class="p-6">
+                    <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6 border border-blue-200">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex-1">
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                                    🎯 Augmenter la satisfaction client de 20%
+                                </h3>
+                                <p class="text-gray-600 mb-4">
+                                    Améliorer l'expérience utilisateur et réduire les plaintes clients
+                                </p>
+                                <div class="flex items-center space-x-4 text-sm text-gray-500 mb-4">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-calendar mr-1"></i>
+                                        <span>31/12/2024</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-users mr-1"></i>
+                                        <span>5 membres</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-flag mr-1"></i>
+                                        <span>Élevée</span>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="flex items-center justify-between text-sm text-gray-600 mb-1">
+                                        <span>Progression</span>
+                                        <span>65%</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-600 h-2 rounded-full" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Actions sur l'Objectif -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <button class="p-2 text-gray-400 hover:text-blue-600 transition-colors" title="Voir les détails">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="p-2 text-gray-400 hover:text-purple-600 transition-colors" title="Gérer l'équipe">
+                                    <i class="fas fa-users"></i>
+                                </button>
+                                <button class="p-2 text-gray-400 hover:text-green-600 transition-colors" title="Voir Analytics">
+                                    <i class="fas fa-chart-bar"></i>
+                                </button>
+                                <button class="p-2 text-gray-400 hover:text-indigo-600 transition-colors" title="Modifier">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="p-2 text-gray-400 hover:text-red-600 transition-colors" title="Supprimer">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                            <div class="text-xs text-gray-500">
+                                Propriétaire: Jean Dupont
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions de Test -->
+            <div class="bg-yellow-50 rounded-lg p-6 mt-8 border border-yellow-200">
+                <h2 class="text-lg font-semibold text-yellow-900 mb-4 flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Instructions de Test
+                </h2>
+                <div class="space-y-2 text-sm text-yellow-800">
+                    <p>✅ <strong>Testez les nouvelles fonctionnalités :</strong></p>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>Boutons de vue (Grille, Liste, Kanban)</li>
+                        <li>Actions rapides (Nouvel Objectif, Gérer Équipes, Analytics)</li>
+                        <li>Boutons d'action sur chaque objectif</li>
+                        <li>Gestion des équipes avec sélection des utilisateurs</li>
+                        <li>Système de notifications pour les assignations</li>
+                        <li>Export de données en PDF/CSV</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

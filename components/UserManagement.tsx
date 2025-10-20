@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useLocalization } from '../contexts/LocalizationContext';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContextSupabase';
 import { User, Role } from '../types';
+import Avatar from './common/Avatar';
 
 const UserEditModal: React.FC<{
     user: User;
@@ -122,7 +123,7 @@ const UserManagement: React.FC<UserManagementProps> = ({ users, onUpdateUser }) 
                             {users.map(user => (
                                 <tr key={user.id} className="bg-white border-b hover:bg-gray-50">
                                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap flex items-center">
-                                        <img src={user.avatar} alt={user.name} className="w-8 h-8 rounded-full mr-3"/>
+                                        <Avatar user={user} size="md" className="mr-3"/>
                                         {user.name}
                                     </th>
                                     <td className="px-6 py-4">{user.email}</td>

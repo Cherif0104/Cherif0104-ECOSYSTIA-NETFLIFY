@@ -1,0 +1,195 @@
+/* ♿ STYLES D'ACCESSIBILITÉ - ECOSYSTIA */
+
+/* Contraste élevé */
+.high-contrast {
+  filter: contrast(150%) brightness(110%);
+}
+
+.high-contrast * {
+  border-color: #000 !important;
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
+.high-contrast .bg-blue-600,
+.high-contrast .bg-emerald-600,
+.high-contrast .bg-green-600 {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.high-contrast .text-gray-500,
+.high-contrast .text-gray-600 {
+  color: #000 !important;
+}
+
+.high-contrast .border-gray-200,
+.high-contrast .border-gray-300 {
+  border-color: #000 !important;
+}
+
+/* Focus visible amélioré */
+*:focus {
+  outline: 3px solid #0066cc !important;
+  outline-offset: 2px !important;
+}
+
+/* Amélioration des contrastes pour les boutons */
+button:focus,
+a:focus,
+[role="button"]:focus {
+  background-color: #0066cc !important;
+  color: white !important;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3) !important;
+}
+
+/* Amélioration des contrastes pour les inputs */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #0066cc !important;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3) !important;
+}
+
+/* Styles pour les lecteurs d'écran */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Amélioration de la lisibilité */
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3,
+.high-contrast h4,
+.high-contrast h5,
+.high-contrast h6 {
+  font-weight: bold !important;
+  text-decoration: underline !important;
+}
+
+/* Indicateurs visuels pour les éléments interactifs */
+.high-contrast button,
+.high-contrast a,
+.high-contrast [role="button"] {
+  border: 2px solid #000 !important;
+  padding: 4px 8px !important;
+}
+
+/* Amélioration des tableaux */
+.high-contrast table {
+  border-collapse: collapse !important;
+}
+
+.high-contrast th,
+.high-contrast td {
+  border: 2px solid #000 !important;
+  padding: 8px !important;
+}
+
+.high-contrast th {
+  background-color: #000 !important;
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+/* Amélioration des modales */
+.high-contrast .modal,
+.high-contrast .fixed {
+  border: 3px solid #000 !important;
+  box-shadow: 0 0 0 3px #0066cc !important;
+}
+
+/* Amélioration des notifications */
+.high-contrast .notification {
+  border: 2px solid #000 !important;
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+/* Amélioration des cartes */
+.high-contrast .card {
+  border: 2px solid #000 !important;
+  background-color: #fff !important;
+}
+
+/* Amélioration des badges */
+.high-contrast .badge {
+  border: 1px solid #000 !important;
+  font-weight: bold !important;
+}
+
+/* Animation réduite pour les utilisateurs sensibles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Amélioration de la navigation au clavier */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Amélioration des liens */
+a:not([href]) {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Amélioration des boutons désactivés */
+button:disabled,
+[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Amélioration des champs obligatoires */
+input:required,
+textarea:required,
+select:required {
+  border-left: 4px solid #0066cc !important;
+}
+
+/* Amélioration des messages d'erreur */
+.error-message {
+  color: #d32f2f !important;
+  font-weight: bold !important;
+  border: 2px solid #d32f2f !important;
+  background-color: #ffebee !important;
+  padding: 8px !important;
+  margin: 4px 0 !important;
+}
+
+/* Amélioration des messages de succès */
+.success-message {
+  color: #2e7d32 !important;
+  font-weight: bold !important;
+  border: 2px solid #2e7d32 !important;
+  background-color: #e8f5e8 !important;
+  padding: 8px !important;
+  margin: 4px 0 !important;
+}

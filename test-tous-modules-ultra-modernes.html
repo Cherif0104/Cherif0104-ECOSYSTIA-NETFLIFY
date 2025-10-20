@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Tous les Modules Ultra-Modernes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .module-btn {
+            transition: all 0.3s ease;
+        }
+        .module-btn:hover {
+            transform: translateY(-2px);
+        }
+        .module-content {
+            display: none;
+        }
+        .module-content.active {
+            display: block;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, var(--color-start), var(--color-end));
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <div class="bg-white shadow-sm border-b border-gray-200">
+        <div class="px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Ecosystia - Modules Ultra-Modernes</h1>
+                    <p class="text-gray-600">Démonstration de tous les modules avec interfaces ultra-modernes</p>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <i class="fas fa-code mr-2"></i>
+                    Version de démonstration
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation des modules -->
+    <div class="px-6 py-4">
+        <div class="flex flex-wrap gap-3">
+            <button onclick="showModule('projects')" class="module-btn active bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                <i class="fas fa-project-diagram mr-2"></i>Projets
+            </button>
+            <button onclick="showModule('leave-management')" class="module-btn bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
+                <i class="fas fa-calendar-alt mr-2"></i>Gestion Congés
+            </button>
+            <button onclick="showModule('finance')" class="module-btn bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                <i class="fas fa-chart-line mr-2"></i>Finance
+            </button>
+            <button onclick="showModule('crm')" class="module-btn bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition-colors">
+                <i class="fas fa-users mr-2"></i>CRM
+            </button>
+            <button onclick="showModule('time-tracking')" class="module-btn bg-teal-600 text-white px-6 py-3 rounded-lg hover:bg-teal-700 transition-colors">
+                <i class="fas fa-clock mr-2"></i>Suivi Temps
+            </button>
+            <button onclick="showModule('goals')" class="module-btn bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                <i class="fas fa-bullseye mr-2"></i>Objectifs OKRs
+            </button>
+            <button onclick="showModule('courses')" class="module-btn bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition-colors">
+                <i class="fas fa-graduation-cap mr-2"></i>Cours
+            </button>
+            <button onclick="showModule('jobs')" class="module-btn bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors">
+                <i class="fas fa-briefcase mr-2"></i>Emplois
+            </button>
+            <button onclick="showModule('knowledge-base')" class="module-btn bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors">
+                <i class="fas fa-book mr-2"></i>Base Connaissances
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenu des modules -->
+    <div class="px-6 pb-6">
+        <!-- Module Projets -->
+        <div id="projects" class="module-content active">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module Projets Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-project-diagram text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Total Projets</p>
+                                <p class="text-2xl font-bold">12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-play-circle text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">En Cours</p>
+                                <p class="text-2xl font-bold">8</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #8B5CF6; --color-end: #7C3AED;">
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Équipe</p>
+                                <p class="text-2xl font-bold">24</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #F59E0B; --color-end: #D97706;">
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-yellow-100 text-sm">Progression</p>
+                                <p class="text-2xl font-bold">75%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion complète des projets avec CRUD</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion d'équipe avec rôles et permissions</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Vues multiples : Grille, Liste, Kanban</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Recherche et filtrage avancés</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Métriques en temps réel</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Interface ultra-moderne et responsive</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Gestion Congés -->
+        <div id="leave-management" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module Gestion Congés Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-calendar-alt text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Demandes</p>
+                                <p class="text-2xl font-bold">28</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Approuvées</p>
+                                <p class="text-2xl font-bold">22</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #F59E0B; --color-end: #D97706;">
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-yellow-100 text-sm">En Attente</p>
+                                <p class="text-2xl font-bold">4</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #EF4444; --color-end: #DC2626;">
+                        <div class="flex items-center">
+                            <i class="fas fa-times-circle text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-red-100 text-sm">Rejetées</p>
+                                <p class="text-2xl font-bold">2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion des demandes de congés</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Workflow d'approbation</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Calendrier des congés</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Statistiques et rapports</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Notifications automatiques</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Finance -->
+        <div id="finance" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module Finance Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-invoice text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Factures</p>
+                                <p class="text-2xl font-bold">€45,230</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #EF4444; --color-end: #DC2626;">
+                        <div class="flex items-center">
+                            <i class="fas fa-receipt text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-red-100 text-sm">Dépenses</p>
+                                <p class="text-2xl font-bold">€12,450</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-pie text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Bénéfices</p>
+                                <p class="text-2xl font-bold">€32,780</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #8B5CF6; --color-end: #7C3AED;">
+                        <div class="flex items-center">
+                            <i class="fas fa-wallet text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Budget</p>
+                                <p class="text-2xl font-bold">€50,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion des factures et dépenses</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Budgets et prévisions</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Éléments récurrents</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Rapports financiers</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi des paiements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module CRM -->
+        <div id="crm" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module CRM Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Contacts</p>
+                                <p class="text-2xl font-bold">156</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-lightbulb text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Leads</p>
+                                <p class="text-2xl font-bold">42</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #F59E0B; --color-end: #D97706;">
+                        <div class="flex items-center">
+                            <i class="fas fa-handshake text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-yellow-100 text-sm">Interactions</p>
+                                <p class="text-2xl font-bold">89</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #8B5CF6; --color-end: #7C3AED;">
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Conversion</p>
+                                <p class="text-2xl font-bold">23%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion des contacts et leads</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi des interactions</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Pipeline de vente</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Analytics et rapports</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Communication intégrée</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Suivi Temps -->
+        <div id="time-tracking" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module Suivi Temps Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Temps Total</p>
+                                <p class="text-2xl font-bold">156h</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-play text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">En Cours</p>
+                                <p class="text-2xl font-bold">3h 45min</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #F59E0B; --color-end: #D97706;">
+                        <div class="flex items-center">
+                            <i class="fas fa-calendar-day text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-yellow-100 text-sm">Aujourd'hui</p>
+                                <p class="text-2xl font-bold">7h 30min</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #8B5CF6; --color-end: #7C3AED;">
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Équipe</p>
+                                <p class="text-2xl font-bold">8 actifs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Timer en temps réel</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion des projets et tâches</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Rapports détaillés</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi d'équipe</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Intégration avec projets</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Objectifs OKRs -->
+        <div id="goals" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module Objectifs OKRs Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-bullseye text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Objectifs</p>
+                                <p class="text-2xl font-bold">12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Atteints</p>
+                                <p class="text-2xl font-bold">8</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #F59E0B; --color-end: #D97706;">
+                        <div class="flex items-center">
+                            <i class="fas fa-chart-line text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-yellow-100 text-sm">Progression</p>
+                                <p class="text-2xl font-bold">67%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #8B5CF6; --color-end: #7C3AED;">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Résultats Clés</p>
+                                <p class="text-2xl font-bold">36</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion des objectifs et résultats clés</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi de progression en temps réel</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Dashboard de performance</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Alignement équipe/entreprise</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Rapports et analytics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Cours -->
+        <div id="courses" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module Cours Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-graduation-cap text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Total Cours</p>
+                                <p class="text-2xl font-bold">24</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-play-circle text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Actifs</p>
+                                <p class="text-2xl font-bold">18</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #8B5CF6; --color-end: #7C3AED;">
+                        <div class="flex items-center">
+                            <i class="fas fa-users text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Étudiants</p>
+                                <p class="text-2xl font-bold">1,250</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #F59E0B; --color-end: #D97706;">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-yellow-100 text-sm">Note Moyenne</p>
+                                <p class="text-2xl font-bold">4.7</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion des cours et leçons</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi de progression</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Ressources et matériel</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Évaluations et notes</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Certifications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Emplois -->
+        <div id="jobs" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module Emplois Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-briefcase text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Offres</p>
+                                <p class="text-2xl font-bold">15</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-door-open text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Ouvertes</p>
+                                <p class="text-2xl font-bold">12</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #8B5CF6; --color-end: #7C3AED;">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-alt text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Candidatures</p>
+                                <p class="text-2xl font-bold">89</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #F59E0B; --color-end: #D97706;">
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-yellow-100 text-sm">En Attente</p>
+                                <p class="text-2xl font-bold">23</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion des offres d'emploi</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Suivi des candidatures</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Pipeline de recrutement</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Évaluation des candidats</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Communication avec candidats</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module Base de Connaissances -->
+        <div id="knowledge-base" class="module-content">
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Module Base de Connaissances Ultra-Moderne</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #3B82F6; --color-end: #1D4ED8;">
+                        <div class="flex items-center">
+                            <i class="fas fa-file-alt text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-blue-100 text-sm">Articles</p>
+                                <p class="text-2xl font-bold">156</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #10B981; --color-end: #059669;">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-green-100 text-sm">Publiés</p>
+                                <p class="text-2xl font-bold">142</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #8B5CF6; --color-end: #7C3AED;">
+                        <div class="flex items-center">
+                            <i class="fas fa-eye text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-purple-100 text-sm">Vues</p>
+                                <p class="text-2xl font-bold">12,450</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-card p-4 rounded-lg text-white" style="--color-start: #F59E0B; --color-end: #D97706;">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-2xl mr-3"></i>
+                            <div>
+                                <p class="text-yellow-100 text-sm">Note Moyenne</p>
+                                <p class="text-2xl font-bold">4.6</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-gray-900 mb-2">Fonctionnalités principales</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Gestion des articles et guides</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Catégorisation et tags</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Recherche avancée</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Versioning et historique</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Analytics et feedback</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-white border-t border-gray-200 px-6 py-4">
+        <div class="text-center text-sm text-gray-500">
+            <p><i class="fas fa-code mr-2"></i>Développé avec React, TypeScript et Tailwind CSS</p>
+            <p class="mt-1">Tous les modules sont fonctionnels avec interfaces ultra-modernes</p>
+        </div>
+    </div>
+
+    <script>
+        function showModule(moduleId) {
+            // Masquer tous les modules
+            document.querySelectorAll('.module-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Désactiver tous les boutons
+            document.querySelectorAll('.module-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Afficher le module sélectionné
+            document.getElementById(moduleId).classList.add('active');
+            
+            // Activer le bouton correspondant
+            event.target.classList.add('active');
+        }
+
+        // Animation d'entrée
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.metric-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>

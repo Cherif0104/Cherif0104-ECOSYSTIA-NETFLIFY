@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modules UltraModern - Ecosystia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .module-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .module-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        .status-badge {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-gray-900">Ecosystia - Test Modules UltraModern</h1>
+                    </div>
+                    <div class="ml-4">
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check-circle mr-1"></i>
+                            Modules UltraModern
+                        </span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-calendar-alt mr-1"></i>
+                        15 Octobre 2025
+                    </div>
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-user mr-1"></i>
+                        Test Simple
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Introduction -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                Test Modules UltraModern
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+                Vérification du chargement des nouveaux modules UltraModern
+            </p>
+            
+            <!-- Statut du serveur -->
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-8">
+                <div class="flex items-center justify-center">
+                    <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600 mr-3"></div>
+                    <span class="text-blue-800 font-medium">Vérification du serveur de développement...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modules UltraModern -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 1. Course Management UltraModern -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-graduation-cap text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Course Management</h3>
+                            <p class="text-sm text-gray-500">Gestion des cours</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-chart-bar mr-2 text-blue-500"></i>
+                        Métriques et analytics
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-plus-circle mr-2 text-green-500"></i>
+                        Actions rapides
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-filter mr-2 text-purple-500"></i>
+                        Filtres avancés
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-code mr-1"></i>
+                        TypeScript + React
+                    </div>
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 2. AI Coach UltraModern -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-robot text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">AI Coach</h3>
+                            <p class="text-sm text-gray-500">Assistant IA</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-comments mr-2 text-blue-500"></i>
+                        Chat intelligent
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-lightbulb mr-2 text-yellow-500"></i>
+                        Recommandations
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-history mr-2 text-purple-500"></i>
+                        Historique
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-brain mr-1"></i>
+                        IA + Chat
+                    </div>
+                    <button class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. Gen AI Lab UltraModern -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-flask text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Gen AI Lab</h3>
+                            <p class="text-sm text-gray-500">Laboratoire IA</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-file-text mr-2 text-blue-500"></i>
+                        Génération contenu
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-template mr-2 text-green-500"></i>
+                        Templates
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-download mr-2 text-purple-500"></i>
+                        Export
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-magic mr-1"></i>
+                        IA Générative
+                    </div>
+                    <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+
+            <!-- 4. Leave Management UltraModern -->
+            <div class="module-card bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-calendar-times text-orange-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Leave Management</h3>
+                            <p class="text-sm text-gray-500">Gestion congés</p>
+                        </div>
+                    </div>
+                    <span class="status-badge inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-check-circle mr-1"></i>
+                        UltraModern
+                    </span>
+                </div>
+                
+                <div class="space-y-2 mb-4">
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-clock mr-2 text-yellow-500"></i>
+                        Demandes congés
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-calendar-alt mr-2 text-blue-500"></i>
+                        Calendrier
+                    </div>
+                    <div class="flex items-center text-sm text-gray-600">
+                        <i class="fas fa-check-double mr-2 text-purple-500"></i>
+                        Workflow approbation
+                    </div>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-500">
+                        <i class="fas fa-users mr-1"></i>
+                        RH + Workflow
+                    </div>
+                    <button class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+                        <i class="fas fa-external-link-alt mr-1"></i>
+                        Tester
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions de test -->
+        <div class="mt-12 bg-green-50 rounded-lg p-6">
+            <h3 class="text-lg font-semibold text-green-900 mb-4">
+                <i class="fas fa-info-circle mr-2"></i>
+                Instructions de Test
+            </h3>
+            <div class="space-y-3 text-green-800">
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-green-600"></i>
+                    <span>1. Vérifiez que le serveur de développement fonctionne sur http://localhost:5173/</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-green-600"></i>
+                    <span>2. Naviguez vers chaque module UltraModern via la sidebar</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-green-600"></i>
+                    <span>3. Testez les formulaires CRUD et la validation</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-green-600"></i>
+                    <span>4. Vérifiez les métriques et actions rapides</span>
+                </div>
+                <div class="flex items-start">
+                    <i class="fas fa-check-circle mr-2 mt-1 text-green-600"></i>
+                    <span>5. Testez la responsivité sur différentes tailles d'écran</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statut des modules -->
+        <div class="mt-8 bg-white rounded-lg shadow-sm p-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+                <i class="fas fa-clipboard-check mr-2"></i>
+                Statut des Modules UltraModern
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-600">Course Management UltraModern</span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check mr-1"></i>
+                            Prêt
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-600">AI Coach UltraModern</span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check mr-1"></i>
+                            Prêt
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-600">Gen AI Lab UltraModern</span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check mr-1"></i>
+                            Prêt
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-600">Leave Management UltraModern</span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check mr-1"></i>
+                            Prêt
+                        </span>
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-600">Finance UltraModern</span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check mr-1"></i>
+                            Prêt
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-600">CRM UltraModern</span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check mr-1"></i>
+                            Prêt
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-600">Goals UltraModern</span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check mr-1"></i>
+                            Prêt
+                        </span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm text-gray-600">Time Tracking UltraModern</span>
+                        <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <i class="fas fa-check mr-1"></i>
+                            Prêt
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="text-center text-gray-500">
+                <p>&copy; 2025 Ecosystia - Tous les modules UltraModern sont prêts ! 🚀</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation des cartes au survol
+        document.querySelectorAll('.module-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-4px)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Animation des boutons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // Vérification du statut du serveur
+        function checkServerStatus() {
+            fetch('http://localhost:5173/')
+                .then(response => {
+                    if (response.ok) {
+                        document.querySelector('.bg-blue-50').innerHTML = `
+                            <div class="flex items-center justify-center">
+                                <div class="w-6 h-6 bg-green-500 rounded-full mr-3"></div>
+                                <span class="text-green-800 font-medium">Serveur de développement actif sur http://localhost:5173/</span>
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    document.querySelector('.bg-blue-50').innerHTML = `
+                        <div class="flex items-center justify-center">
+                            <div class="w-6 h-6 bg-red-500 rounded-full mr-3"></div>
+                            <span class="text-red-800 font-medium">Serveur non accessible. Vérifiez que npm run dev est lancé.</span>
+                        </div>
+                    `;
+                });
+        }
+
+        // Vérifier le statut au chargement
+        window.addEventListener('load', () => {
+            setTimeout(checkServerStatus, 2000);
+        });
+    </script>
+</body>
+</html>

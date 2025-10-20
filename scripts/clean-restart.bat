@@ -1,0 +1,16 @@
+@echo off
+echo 🧹 Nettoyage du cache et redémarrage...
+
+echo 🛑 Arrêt du serveur de développement...
+taskkill /f /im node.exe 2>nul || echo Aucun processus Node.js trouvé
+
+echo 🧹 Nettoyage du cache...
+if exist node_modules\.vite rmdir /s /q node_modules\.vite
+if exist dist rmdir /s /q dist
+if exist .vite rmdir /s /q .vite
+
+echo 📦 Vérification des dépendances...
+npm install
+
+echo 🚀 Redémarrage du serveur de développement...
+npm run dev

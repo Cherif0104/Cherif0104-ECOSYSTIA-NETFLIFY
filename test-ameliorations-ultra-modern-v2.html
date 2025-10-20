@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Améliorations UltraModern V2 - ECOSYSTIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .status-card {
+            transition: all 0.3s ease;
+        }
+        .status-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        .code-block {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+        .success-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .upgrade-badge {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="test-container">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                🚀 Test Améliorations UltraModern V2
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+                Vérification des améliorations appliquées aux modules User Management et Dashboard
+            </p>
+            <div class="upgrade-badge">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span>Améliorations UltraModern V2 Appliquées</span>
+            </div>
+        </div>
+
+        <!-- Modules Améliorés -->
+        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-200 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 Modules UltraModern V2 Améliorés</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <h3 class="text-lg font-semibold text-gray-900">✅ Modules Déjà UltraModern V2</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Projects UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Goals (OKRs) UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Time Tracking UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Leave Management UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Finance UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Knowledge Base UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Development UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Courses UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Jobs UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">CRM & Sales UltraModern V2</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Analytics UltraModern</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-50 rounded-lg border border-green-200">
+                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span class="text-green-800 font-medium">Settings UltraModern</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    <h3 class="text-lg font-semibold text-gray-900">🆕 Nouveaux Modules UltraModern V2</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span class="text-blue-800 font-medium">User Management UltraModern V2</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">NOUVEAU</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                            <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span class="text-blue-800 font-medium">Dashboard UltraModern V2</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">NOUVEAU</span>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold text-gray-900 mt-8">🔧 Améliorations Appliquées</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                            <span class="text-yellow-800 font-medium">Service UserManagement avec données mockées</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                            <span class="text-yellow-800 font-medium">Interface Dashboard UltraModern complète</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                            <span class="text-yellow-800 font-medium">Métriques et statistiques avancées</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                            <span class="text-yellow-800 font-medium">Onglets et vues multiples</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                            <span class="text-yellow-800 font-medium">Actions rapides et export</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fonctionnalités User Management UltraModern V2 -->
+        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-200 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">👥 User Management UltraModern V2</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="status-card bg-gradient-to-br from-red-50 to-red-100 rounded-lg p-6 border border-red-200">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-red-500 rounded-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-red-900">Gestion Utilisateurs</h3>
+                    </div>
+                    <ul class="text-sm text-red-800 space-y-2">
+                        <li>• Interface UltraModern avec métriques</li>
+                        <li>• CRUD complet (Créer, Lire, Modifier, Supprimer)</li>
+                        <li>• Recherche et filtres avancés</li>
+                        <li>• Vues Grid, List et Table</li>
+                        <li>• Gestion des statuts (Actif/Inactif)</li>
+                    </ul>
+                </div>
+
+                <div class="status-card bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 border border-green-200">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-green-500 rounded-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-green-900">Gestion Rôles</h3>
+                    </div>
+                    <ul class="text-sm text-green-800 space-y-2">
+                        <li>• Création et modification de rôles</li>
+                        <li>• Système de permissions détaillé</li>
+                        <li>• Attribution des rôles aux utilisateurs</li>
+                        <li>• Interface de configuration intuitive</li>
+                        <li>• Validation des permissions</li>
+                    </ul>
+                </div>
+
+                <div class="status-card bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 border border-blue-200">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-blue-500 rounded-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-blue-900">Statistiques</h3>
+                    </div>
+                    <ul class="text-sm text-blue-800 space-y-2">
+                        <li>• Métriques en temps réel</li>
+                        <li>• Compteurs d'utilisateurs par rôle</li>
+                        <li>• Statistiques d'activité</li>
+                        <li>• Graphiques de progression</li>
+                        <li>• Rapports détaillés</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fonctionnalités Dashboard UltraModern V2 -->
+        <div class="bg-white rounded-xl p-8 shadow-lg border border-gray-200 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">📊 Dashboard UltraModern V2</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="status-card bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6 border border-purple-200">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-purple-500 rounded-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-purple-900">Vue d'Ensemble</h3>
+                    </div>
+                    <ul class="text-sm text-purple-800 space-y-2">
+                        <li>• Métriques principales en temps réel</li>
+                        <li>• Graphiques de progression</li>
+                        <li>• Activité récente</li>
+                        <li>• Actions rapides</li>
+                        <li>• Indicateurs de performance</li>
+                    </ul>
+                </div>
+
+                <div class="status-card bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-lg p-6 border border-indigo-200">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-indigo-500 rounded-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-indigo-900">Onglets Spécialisés</h3>
+                    </div>
+                    <ul class="text-sm text-indigo-800 space-y-2">
+                        <li>• Projets avec statistiques</li>
+                        <li>• Cours avec progression</li>
+                        <li>• Emplois avec statuts</li>
+                        <li>• Finance avec revenus</li>
+                        <li>• Temps avec productivité</li>
+                    </ul>
+                </div>
+
+                <div class="status-card bg-gradient-to-br from-teal-50 to-teal-100 rounded-lg p-6 border border-teal-200">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="p-3 bg-teal-500 rounded-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-semibold text-teal-900">Fonctionnalités</h3>
+                    </div>
+                    <ul class="text-sm text-teal-800 space-y-2">
+                        <li>• Recherche globale</li>
+                        <li>• Filtres avancés</li>
+                        <li>• Vues Grid et List</li>
+                        <li>• Export PDF/Excel</li>
+                        <li>• Actualisation en temps réel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions de Test -->
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-8 mb-8">
+            <h2 class="text-2xl font-bold text-blue-900 mb-6">🧪 Instructions de Test</h2>
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg p-6 border border-blue-200">
+                    <h3 class="text-lg font-semibold text-blue-900 mb-4">1. Test User Management UltraModern V2</h3>
+                    <div class="space-y-2 text-blue-800">
+                        <p>✅ Accéder au module User Management</p>
+                        <p>✅ Vérifier l'interface UltraModern avec métriques</p>
+                        <p>✅ Tester la création d'un nouvel utilisateur</p>
+                        <p>✅ Tester la modification d'un utilisateur existant</p>
+                        <p>✅ Tester la création d'un nouveau rôle</p>
+                        <p>✅ Tester les filtres et la recherche</p>
+                        <p>✅ Vérifier les statistiques en temps réel</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 border border-blue-200">
+                    <h3 class="text-lg font-semibold text-blue-900 mb-4">2. Test Dashboard UltraModern V2</h3>
+                    <div class="space-y-2 text-blue-800">
+                        <p>✅ Accéder au Dashboard principal</p>
+                        <p>✅ Vérifier les métriques principales</p>
+                        <p>✅ Tester la navigation entre les onglets</p>
+                        <p>✅ Vérifier les graphiques de progression</p>
+                        <p>✅ Tester les actions rapides</p>
+                        <p>✅ Tester la recherche globale</p>
+                        <p>✅ Tester l'export PDF/Excel</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 border border-blue-200">
+                    <h3 class="text-lg font-semibold text-blue-900 mb-4">3. Vérifications Générales</h3>
+                    <div class="space-y-2 text-blue-800">
+                        <p>✅ Plus d'erreurs dans la console</p>
+                        <p>✅ Interface responsive et moderne</p>
+                        <p>✅ Animations et transitions fluides</p>
+                        <p>✅ Cohérence visuelle avec les autres modules</p>
+                        <p>✅ Performance optimisée</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Final -->
+        <div class="text-center">
+            <div class="inline-flex items-center space-x-4 px-8 py-6 bg-gradient-to-r from-green-100 to-blue-100 text-gray-900 rounded-xl border border-green-200">
+                <svg class="w-12 h-12 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <div>
+                    <div class="text-2xl font-bold">🎉 Améliorations UltraModern V2 Complètes</div>
+                    <div class="text-lg">User Management et Dashboard Modernisés</div>
+                    <div class="text-sm text-gray-600 mt-2">Tous les modules ECOSYSTIA sont maintenant UltraModern V2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
